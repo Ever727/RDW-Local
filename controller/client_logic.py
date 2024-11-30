@@ -19,9 +19,13 @@ def calc_gain_generalized(
     """
     global previous_rotation
 
-    # Calculate rotation direction
+    # Calculate rotation direction and curvature radius
     target_angle_diff = calc_min_angel_diff(user.angle, target_angle)
     rotation_direction = calc_rotation_direction(target_angle, user.angle)
+    # k = 5  # Curvature radius scaling factor
+    # curvature_radius = min(k * math.sin(target_angle_diff) * 100, MIN_CUR_GAIN_R)
+    # if curvature_radius == 0:
+    #     curvature_radius = INF_CUR_GAIN_R
 
     print(
         f"Target angle: {target_angle}, distance: {target_distance}, angle diff: {target_angle_diff}, rotation direction: {rotation_direction}"
@@ -77,17 +81,24 @@ def calc_gain_generalized(
     previous_rotation = rotation_gain_smoothed  # Update previous rotation
 
     # Calculate rotation gain rate
-    basic_rotation_angle = (user.v / MAX_TRANS_GAIN) * (delta / 7.5) + user.w * delta
+    basic_rotation_angle = (user.v / MAX_TRANS_GAIN) * delta / (MIN_CUR_GAIN_R / 100)
+    print(
+        f"Basic rotation angle: {basic_rotation_angle}, rotation gain: {rotation_gain_smoothed}"
+    )
     if basic_rotation_angle == 0:
-        rotation_gain = 1.0
+        curvature_radius = INF_CUR_GAIN_R
     else:
-        rotation_gain = rotation_gain_smoothed / basic_rotation_angle + 1.0
+        curvature_radius = (
+            MIN_CUR_GAIN_R
+            * basic_rotation_angle
+            / (basic_rotation_angle + rotation_gain_smoothed)
+        )
 
     print(
-        f"Rotation gain: {rotation_gain}, direction: {rotation_direction}, curvature radius: {MIN_CUR_GAIN_R}"
+        f"Rotation gain: {MAX_ROT_GAIN}, direction: {rotation_direction}, curvature radius: {curvature_radius}"
     )
 
-    return MAX_TRANS_GAIN, rotation_gain, MIN_CUR_GAIN_R, rotation_direction
+    return MAX_TRANS_GAIN, MAX_ROT_GAIN, curvature_radius, rotation_direction
 
 
 def calc_gain_S2C(user: UserInfo, physical_space: Space, delta: float):
@@ -189,7 +200,7 @@ def calc_gain_S2O(user: UserInfo, physical_space: Space, delta: float):
     return calc_gain_generalized(user, delta, target_angle, target_distance)
 
 
-def calc_gain(user: UserInfo, physical_space: Space, delta: float, algorithm="S2O"):
+def calc_gain(user: UserInfo, physical_space: Space, delta: float, algorithm="S2C"):
     """
     Return three gains and the direction (+1 or -1) when cur_gain used. Implement your own logic here.
     """
