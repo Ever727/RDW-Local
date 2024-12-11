@@ -88,10 +88,9 @@ def calc_gain_generalized(
     if basic_rotation_angle == 0:
         curvature_radius = INF_CUR_GAIN_R
     else:
-        curvature_radius = (
-            MIN_CUR_GAIN_R
-            * basic_rotation_angle
-            / (basic_rotation_angle + rotation_gain_smoothed)
+        curvature_radius = min(
+            (MIN_CUR_GAIN_R * basic_rotation_angle / rotation_gain_smoothed),
+            MIN_CUR_GAIN_R,
         )
 
     print(
@@ -200,7 +199,7 @@ def calc_gain_S2O(user: UserInfo, physical_space: Space, delta: float):
     return calc_gain_generalized(user, delta, target_angle, target_distance)
 
 
-def calc_gain(user: UserInfo, physical_space: Space, delta: float, algorithm="S2C"):
+def calc_gain(user: UserInfo, physical_space: Space, delta: float, algorithm="S2O"):
     """
     Return three gains and the direction (+1 or -1) when cur_gain used. Implement your own logic here.
     """
