@@ -199,21 +199,34 @@ def calc_gain_S2O(user: UserInfo, physical_space: Space, delta: float):
     return calc_gain_generalized(user, delta, target_angle, target_distance)
 
 
-def calc_gain(user: UserInfo, physical_space: Space, delta: float, algorithm="S2O"):
+def calc_gain(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+    algorithm="S2C",
+):
     """
     Return three gains and the direction (+1 or -1) when cur_gain used. Implement your own logic here.
     """
     if algorithm == "S2C":
-        return calc_gain_S2C(user, physical_space, delta)
+        return calc_gain_S2C(physical_user, physical_space, delta)
     elif algorithm == "S2O":
-        return calc_gain_S2O(user, physical_space, delta)
+        return calc_gain_S2O(physical_user, physical_space, delta)
     else:
         return MAX_TRANS_GAIN, MAX_ROT_GAIN, INF_CUR_GAIN_R, 1
 
 
-def update_reset(user: UserInfo, physical_space: Space, delta: float):
+def update_reset(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+):
     """
     Return new UserInfo when RESET. Implement your RESET logic here.
     """
-    user.angle = (user.angle + math.pi) % (2 * math.pi)
-    return user
+    physical_user.angle = (physical_user.angle + math.pi) % (2 * math.pi)
+    return physical_user
