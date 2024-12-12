@@ -1,7 +1,8 @@
 DELTA_T = 0.02  # 50 fps
+PIXEL = 40  # pixels per meter
 MIN_TRANS_GAIN = 0.86
 MAX_TRANS_GAIN = 1.26
 MIN_ROT_GAIN = 0.67
 MAX_ROT_GAIN = 1.24
-MIN_CUR_GAIN_R = 600  # cm!
-INF_CUR_GAIN_R = 2500000  # cm!
+MIN_CUR_GAIN_R = 7.5  # m
+INF_CUR_GAIN_R = 2500000  # m
