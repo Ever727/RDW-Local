@@ -54,7 +54,7 @@ async def user_loop(websocket, path):
     while True:
         data = await websocket.recv()
         data = json.loads(data)
-        print(data)
+        # print(data)
         if data["type"] == "start":
             physical_space = Space(
                 data["physical"]["border"], data["physical"]["obstacle_list"]
@@ -76,8 +76,8 @@ async def user_loop(websocket, path):
                 data["virtual"]["user_x"],
                 data["virtual"]["user_y"],
                 data["virtual"]["user_direction"],
-                data["virtual_v"],
-                data["virtual_w"],
+                data["user_v"],
+                data["user_w"],
             )
             delta_t = data["delta_t"]
             need_reset = data["need_reset"]

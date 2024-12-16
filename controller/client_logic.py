@@ -198,6 +198,111 @@ def calc_gain_S2O(user: UserInfo, physical_space: Space, delta: float):
 
     return calc_gain_generalized(user, delta, target_angle, target_distance)
 
+def calc_potential_field_neg_gradient(user: UserInfo, physical_space: Space):
+    border = physical_space.border
+    obstacles = physical_space.obstacle_list
+    potential_field_neg_gradient_x = 0
+    potential_field_neg_gradient_y = 0
+    border_x = [point[0] for point in border]
+    border_y = [point[1] for point in border]
+    # 对 border_x 去重
+    border_x = list(set(border_x))
+    # 对 border_y 去重
+    border_y = list(set(border_y))
+    print('-------------------------')
+    for x in border_x:
+        dx = user.x - x
+        print(dx)
+        if dx < 0:
+            potential_field_neg_gradient_x -= 1 / dx**2
+        elif dx > 0:
+            potential_field_neg_gradient_x += 1 / dx**2
+    for y in border_y:
+        dy = user.y - y
+        print(dy)
+        if dy < 0:
+            potential_field_neg_gradient_y -= 1 / dy**2
+        elif dy > 0:
+            potential_field_neg_gradient_y += 1 / dy**2
+    print(potential_field_neg_gradient_x, potential_field_neg_gradient_y)
+    for obstacle in obstacles:
+        min_point_x = 1e7
+        min_point_y = 1e7
+        max_point_x = 0
+        max_point_y = 0
+        for point in obstacle:
+            min_point_x = min(min_point_x, point[0])
+            min_point_y = min(min_point_y, point[1])
+            max_point_x = max(max_point_x, point[0])
+            max_point_y = max(max_point_y, point[1])
+        
+        print(f"min_point_x: {min_point_x}, min_point_y: {min_point_y}, max_point_x: {max_point_x}, max_point_y: {max_point_y}")
+        
+        if min_point_x <= user.x <= max_point_x:
+            if user.y > max_point_y:
+                potential_field_neg_gradient_y += 1 / (user.y - max_point_y)**2
+            elif user.y < min_point_y:
+                potential_field_neg_gradient_y -= 1 / (min_point_y - user.y)**2
+                
+        elif min_point_y <= user.y <= max_point_y:
+            if user.x > max_point_x:
+                potential_field_neg_gradient_x += 1 / (user.x - max_point_x)**2
+            elif user.x < min_point_x:
+                potential_field_neg_gradient_x -= 1 / (min_point_x - user.x)**2
+            
+        else:
+            if user.x > max_point_x and user.y > max_point_y:
+                potential_field_neg_gradient_x += 1 / (user.x - max_point_x)**2
+                potential_field_neg_gradient_y += 1 / (user.y - max_point_y)**2
+            elif user.x < min_point_x and user.y > max_point_y:
+                potential_field_neg_gradient_x -= 1 / (min_point_x - user.x)**2
+                potential_field_neg_gradient_y += 1 / (user.y - max_point_y)**2
+            elif user.x > max_point_x and user.y < min_point_y:
+                potential_field_neg_gradient_x += 1 / (user.x - max_point_x)**2
+                potential_field_neg_gradient_y -= 1 / (min_point_y - user.y)**2
+            elif user.x < min_point_x and user.y < min_point_y:
+                potential_field_neg_gradient_x -= 1 / (min_point_x - user.x)**2
+                potential_field_neg_gradient_y -= 1 / (min_point_y - user.y)**2
+    
+    
+    print(potential_field_neg_gradient_x, potential_field_neg_gradient_y)
+    return potential_field_neg_gradient_x, potential_field_neg_gradient_y
+            
+        
+
+
+def calc_gain_APF(user: UserInfo, physical_space: Space, delta: float):
+    neg_gradient_x, neg_gradient_y = calc_potential_field_neg_gradient(user, physical_space)
+    neg_graient = np.array([neg_gradient_x, neg_gradient_y])
+    user_direction = np.array([math.cos(user.angle), math.sin(user.angle)])
+    
+    trans_gain = MAX_TRANS_GAIN
+    rot_gain = MAX_ROT_GAIN
+    cur_gain_r = INF_CUR_GAIN_R
+    rot_dir = 1
+    
+    if (np.dot(neg_graient, user_direction) < 0):
+        trans_gain = MAX_TRANS_GAIN
+    else:
+        trans_gain = 1
+    
+    
+    cross_product = np.cross(neg_graient, user_direction)
+    print("cross_product: ",cross_product)
+    if cross_product > 0:
+        cur_gain_r = 50
+        rot_dir = -1
+    elif cross_product < 0:
+        cur_gain_r = 50
+        rot_dir = 1
+    else:
+        cur_gain_r = INF_CUR_GAIN_R
+    # print(f"neg_gradient_x: {neg_gradient_x}, neg_gradient_y: {neg_gradient_y}, user_direction: {user_direction}, cross_product: {cross_product}")
+
+
+    
+    return trans_gain, rot_gain, cur_gain_r, rot_dir
+
 
 def calc_gain(
     physical_user: UserInfo,
@@ -205,7 +310,7 @@ def calc_gain(
     physical_space: Space,
     virtual_space: Space,
     delta: float,
-    algorithm="S2C",
+    algorithm="APF",
 ):
     """
     Return three gains and the direction (+1 or -1) when cur_gain used. Implement your own logic here.
@@ -214,6 +319,8 @@ def calc_gain(
         return calc_gain_S2C(physical_user, physical_space, delta)
     elif algorithm == "S2O":
         return calc_gain_S2O(physical_user, physical_space, delta)
+    elif algorithm == "APF":
+        return calc_gain_APF(physical_user, physical_space, delta)
     else:
         return MAX_TRANS_GAIN, MAX_ROT_GAIN, INF_CUR_GAIN_R, 1
 
