@@ -54,7 +54,7 @@ async def user_loop(websocket, path):
     while True:
         data = await websocket.recv()
         data = json.loads(data)
-        print(data)
+        #print(data)
         if data["type"] == "start":
             physical_space = Space(
                 data["physical"]["border"], data["physical"]["obstacle_list"]
