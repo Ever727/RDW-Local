@@ -207,47 +207,56 @@ def calc_gain_S2O(user: UserInfo, physical_space: Space, delta: float):
 
     return calc_gain_generalized(user, delta, target_angle, target_distance)
 
+
 class FixedNormal(torch.distributions.Normal):
     def log_probs(self, actions):
-        return super().log_prob(actions).sum(-1,keepdim=True)
+        return super().log_prob(actions).sum(-1, keepdim=True)
+
     def entrop(self):
         return super().entropy().sum(-1)
+
     def mode(self):
         return self.mean
-      
+
+
 def split_action(action):
-    gt,gr,gc = action[0]
+    gt, gr, gc = action[0]
     gt = 1.060 + 0.2 * gt
     gr = 1.145 + 0.345 * gr
     gc = 0.05 * gc
-    return gt,gr,gc
-  
-  
+    return gt, gr, gc
+
+
 def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path: str):
     """
     Calculate gains for Reinforcement Learning (RL) using the generalized redirected walking mechanisms.
     """
     # Load the RL model
     model = torch.load(model_path)
-    height,width = 200,200
+    height, width = 200, 200
     obs = []
-    obs.extend(10*[(user.x)/height,(user.y)/width,(user.angle + math.pi)/(2 * math.pi)])
+    obs.extend(
+        10
+        * [(user.x) / height, (user.y) / width, (user.angle + math.pi) / (2 * math.pi)]
+    )
     observation = torch.Tensor(obs)
     observation = torch.Tensor(observation).unsqueeze(0)
     with torch.no_grad():
-        _value,action_mean,action_log_std = model.act(observation)
-        dist = FixedNormal(action_mean,action_log_std)
+        _value, action_mean, action_log_std = model.act(observation)
+        dist = FixedNormal(action_mean, action_log_std)
         action = dist.mode()
-    gt,gr,gc = split_action(action)
-    gt,gr,gc = gt.item(),gr.item(), 1 / gc.item()
+    gt, gr, gc = split_action(action)
+    gt, gr, gc = gt.item(), gr.item(), 1 / gc.item()
 
-    if gc > 0 :
+    if gc > 0:
         direction = 1
     else:
         direction = -1
         gc = -gc
-    print(f"Translational gain: {gt}, Rotational gain: {gr}, Curvature gain: {gc}, Direction: {direction}")
-    return gt,gr,gc,direction
+    print(
+        f"Translational gain: {gt}, Rotational gain: {gr}, Curvature gain: {gc}, Direction: {direction}"
+    )
+    return gt, gr, gc, direction
 
 
 def calc_gain_ARC(
@@ -335,9 +344,9 @@ def calc_gain(
     if algorithm == "S2C":
         return calc_gain_S2C(physical_user, physical_space, delta)
     elif algorithm == "S2O":
-        return calc_gain_S2O(user, physical_space, delta)
+        return calc_gain_S2O(physical_user, physical_space, delta)
     elif algorithm == "RL":
-        return calc_gain_RL(user, physical_space, delta, "models/5900.pth")
+        return calc_gain_RL(physical_user, physical_space, delta, "models/5900.pth")
     elif algorithm == "ARC":
         return calc_gain_ARC(
             physical_user, virtual_user, physical_space, virtual_space, delta
