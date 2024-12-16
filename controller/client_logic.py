@@ -106,7 +106,7 @@ def calc_gain_generalized(
         f"Rotation gain: {MAX_ROT_GAIN}, direction: {rotation_direction}, curvature radius: {curvature_radius}"
     )
 
-    return MAX_TRANS_GAIN, MAX_ROT_GAIN, curvature_radius, rotation_direction
+    return MAX_TRANS_GAIN, MAX_ROT_GAIN, MIN_CUR_GAIN_R * PIXEL, rotation_direction
 
 
 def calc_gain_S2C(user: UserInfo, physical_space: Space, delta: float):
