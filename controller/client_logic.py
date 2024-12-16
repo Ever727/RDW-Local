@@ -198,7 +198,7 @@ def calc_gain_S2O(user: UserInfo, physical_space: Space, delta: float):
 
     return calc_gain_generalized(user, delta, target_angle, target_distance)
 
-def calc_potential_field_neg_gradient(user: UserInfo, physical_space: Space):
+def calc_potential_field_neg_gradient(user_x, user_y, physical_space: Space):
     border = physical_space.border
     obstacles = physical_space.obstacle_list
     potential_field_neg_gradient_x = 0
@@ -209,22 +209,22 @@ def calc_potential_field_neg_gradient(user: UserInfo, physical_space: Space):
     border_x = list(set(border_x))
     # 对 border_y 去重
     border_y = list(set(border_y))
-    print('-------------------------')
+    # print('-------------------------')
     for x in border_x:
-        dx = user.x - x
-        print(dx)
+        dx = user_x - x
+        # print(dx)
         if dx < 0:
             potential_field_neg_gradient_x -= 1 / dx**2
         elif dx > 0:
             potential_field_neg_gradient_x += 1 / dx**2
     for y in border_y:
-        dy = user.y - y
-        print(dy)
+        dy = user_y - y
+        # print(dy)
         if dy < 0:
             potential_field_neg_gradient_y -= 1 / dy**2
         elif dy > 0:
             potential_field_neg_gradient_y += 1 / dy**2
-    print(potential_field_neg_gradient_x, potential_field_neg_gradient_y)
+    # print(potential_field_neg_gradient_x, potential_field_neg_gradient_y)
     for obstacle in obstacles:
         min_point_x = 1e7
         min_point_y = 1e7
@@ -236,43 +236,45 @@ def calc_potential_field_neg_gradient(user: UserInfo, physical_space: Space):
             max_point_x = max(max_point_x, point[0])
             max_point_y = max(max_point_y, point[1])
         
-        print(f"min_point_x: {min_point_x}, min_point_y: {min_point_y}, max_point_x: {max_point_x}, max_point_y: {max_point_y}")
+        # print(f"min_point_x: {min_point_x}, min_point_y: {min_point_y}, max_point_x: {max_point_x}, max_point_y: {max_point_y}")
         
-        if min_point_x <= user.x <= max_point_x:
-            if user.y > max_point_y:
-                potential_field_neg_gradient_y += 1 / (user.y - max_point_y)**2
-            elif user.y < min_point_y:
-                potential_field_neg_gradient_y -= 1 / (min_point_y - user.y)**2
+        # print("user.w: ", user.w)
+        
+        if min_point_x <= user_x <= max_point_x:
+            if user_y > max_point_y:
+                potential_field_neg_gradient_y += 1 / (user_y - max_point_y)**2
+            elif user_y < min_point_y:
+                potential_field_neg_gradient_y -= 1 / (min_point_y - user_y)**2
                 
-        elif min_point_y <= user.y <= max_point_y:
-            if user.x > max_point_x:
-                potential_field_neg_gradient_x += 1 / (user.x - max_point_x)**2
-            elif user.x < min_point_x:
-                potential_field_neg_gradient_x -= 1 / (min_point_x - user.x)**2
+        elif min_point_y <= user_y <= max_point_y:
+            if user_x > max_point_x:
+                potential_field_neg_gradient_x += 1 / (user_x - max_point_x)**2
+            elif user_x < min_point_x:
+                potential_field_neg_gradient_x -= 1 / (min_point_x - user_x)**2
             
         else:
-            if user.x > max_point_x and user.y > max_point_y:
-                potential_field_neg_gradient_x += 1 / (user.x - max_point_x)**2
-                potential_field_neg_gradient_y += 1 / (user.y - max_point_y)**2
-            elif user.x < min_point_x and user.y > max_point_y:
-                potential_field_neg_gradient_x -= 1 / (min_point_x - user.x)**2
-                potential_field_neg_gradient_y += 1 / (user.y - max_point_y)**2
-            elif user.x > max_point_x and user.y < min_point_y:
-                potential_field_neg_gradient_x += 1 / (user.x - max_point_x)**2
-                potential_field_neg_gradient_y -= 1 / (min_point_y - user.y)**2
-            elif user.x < min_point_x and user.y < min_point_y:
-                potential_field_neg_gradient_x -= 1 / (min_point_x - user.x)**2
-                potential_field_neg_gradient_y -= 1 / (min_point_y - user.y)**2
+            if user_x > max_point_x and user_y > max_point_y:
+                potential_field_neg_gradient_x += (user_x - max_point_x) / ((user_x - max_point_x)**2 + (user_y - max_point_y)**2)**1.5
+                potential_field_neg_gradient_y += (user_y - max_point_y) / ((user_x - max_point_x)**2 + (user_y - max_point_y)**2)**1.5
+            elif user_x < min_point_x and user_y > max_point_y:
+                potential_field_neg_gradient_x -= (min_point_x - user_x) / ((min_point_x - user_x)**2 + (user_y - max_point_y)**2)**1.5
+                potential_field_neg_gradient_y += (user_y - max_point_y) / ((min_point_x - user_x)**2 + (user_y - max_point_y)**2)**1.5
+            elif user_x > max_point_x and user_y < min_point_y:
+                potential_field_neg_gradient_x += (user_x - max_point_x) / ((user_x - max_point_x)**2 + (min_point_y - user_y)**2)**1.5
+                potential_field_neg_gradient_y -= (min_point_y - user_y) / ((user_x - max_point_x)**2 + (min_point_y - user_y)**2)**1.5
+            elif user_x < min_point_x and user_y < min_point_y:
+                potential_field_neg_gradient_x -= (min_point_x - user_x) / ((min_point_x - user_x)**2 + (min_point_y - user_y)**2)**1.5
+                potential_field_neg_gradient_y -= (min_point_y - user_y) / ((min_point_x - user_x)**2 + (min_point_y - user_y)**2)**1.5
     
     
-    print(potential_field_neg_gradient_x, potential_field_neg_gradient_y)
+    # print(potential_field_neg_gradient_x, potential_field_neg_gradient_y)
     return potential_field_neg_gradient_x, potential_field_neg_gradient_y
             
         
 
 
 def calc_gain_APF(user: UserInfo, physical_space: Space, delta: float):
-    neg_gradient_x, neg_gradient_y = calc_potential_field_neg_gradient(user, physical_space)
+    neg_gradient_x, neg_gradient_y = calc_potential_field_neg_gradient(user.x, user.y, physical_space)
     neg_graient = np.array([neg_gradient_x, neg_gradient_y])
     user_direction = np.array([math.cos(user.angle), math.sin(user.angle)])
     
@@ -288,20 +290,28 @@ def calc_gain_APF(user: UserInfo, physical_space: Space, delta: float):
     
     
     cross_product = np.cross(neg_graient, user_direction)
-    print("cross_product: ",cross_product)
+    # print("cross_product: ",cross_product)
     if cross_product > 0:
-        cur_gain_r = 50
+        cur_gain_r = MIN_CUR_GAIN_R
         rot_dir = -1
+        if user.w > 0:
+            rot_gain = MAX_ROT_GAIN
+        else:
+            rot_gain = MIN_ROT_GAIN
     elif cross_product < 0:
-        cur_gain_r = 50
+        cur_gain_r = MIN_CUR_GAIN_R
         rot_dir = 1
+        if user.w < 0:
+            rot_gain = MAX_ROT_GAIN
+        else:
+            rot_gain = MIN_ROT_GAIN
     else:
         cur_gain_r = INF_CUR_GAIN_R
     # print(f"neg_gradient_x: {neg_gradient_x}, neg_gradient_y: {neg_gradient_y}, user_direction: {user_direction}, cross_product: {cross_product}")
 
 
     
-    return trans_gain, rot_gain, cur_gain_r, rot_dir
+    return trans_gain, rot_gain, cur_gain_r * PIXEL, rot_dir
 
 
 def calc_gain(
@@ -325,7 +335,18 @@ def calc_gain(
         return MAX_TRANS_GAIN, MAX_ROT_GAIN, INF_CUR_GAIN_R, 1
 
 
-def update_reset(
+def collision_with_obstacle(space, user):
+    print("border: ", space.border)
+    for obstacle in space.obstacle_list:
+        polygon = Polygon(obstacle)
+        next_x = user.x + user.v * math.cos(user.angle)
+        next_y = user.y + user.v * math.sin(user.angle)
+        if polygon.contains(Point(next_x, next_y)):
+            print("next_x: ", next_x, "next_y: ", next_y)
+            return True, obstacle
+    return False, None
+
+def update_reset_MR2C(
     physical_user: UserInfo,
     virtual_user: UserInfo,
     physical_space: Space,
@@ -333,7 +354,90 @@ def update_reset(
     delta: float,
 ):
     """
+    RESET towards center
+    """
+    center_x = sum([point[0] for point in physical_space.border]) / len(physical_space.border)
+    center_y = sum([point[1] for point in physical_space.border]) / len(physical_space.border)
+    physical_user.angle = (math.atan2(center_y - physical_user.y, center_x - physical_user.x)) % (2 * math.pi)
+    
+    # detect collision with obstacles after new angle is set
+    collision, obstacle = collision_with_obstacle(physical_space, physical_user)
+    if collision:
+        print(f"Collision with obstacle: {obstacle}")
+         # If there is a collision, adjust the angle to be perpendicular to the obstacle's boundary
+        # Calculate the direction of the obstacle (the closest point on its boundary)
+        
+        obstacle_polygon = Polygon(obstacle)
+        nearest_point = obstacle_polygon.exterior.interpolate(obstacle_polygon.exterior.project(Point(physical_user.x, physical_user.y)))
+        
+        # Calculate the vector from the user to the nearest point on the obstacle's boundary
+        direction_to_obstacle = (nearest_point.x - physical_user.x, nearest_point.y - physical_user.y)
+        
+        # Calculate the angle perpendicular to the obstacle's edge and away from the obstacle
+        normal_vector = (-direction_to_obstacle[0], -direction_to_obstacle[1])  # Perpendicular to the direction vector
+        angle_to_avoid_obstacle = math.atan2(normal_vector[1], normal_vector[0]) % (2 * math.pi)
+        
+        # Set the user angle to this new angle
+        physical_user.angle = angle_to_avoid_obstacle
+        print(f"Adjusted angle to avoid obstacle: {angle_to_avoid_obstacle}")
+    return physical_user
+
+def update_reset_R2G(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+):
+    """
+    RESET towards gradient
+    """
+    grad_x, grad_y = calc_potential_field_neg_gradient(physical_user.x, physical_user.y, physical_space)
+    physical_user.angle = (math.atan2(grad_y, grad_x)) % (2 * math.pi)
+    return physical_user
+
+def update_reset_SFR2G(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+):
+    """
+    RESET towards few gradient steps
+    """
+    steps = 10
+    target_x, target_y = physical_user.x, physical_user.y
+    print("target_x: ", target_x, "target_y: ", target_y)
+    print("physical_user.v: ", physical_user.v)
+    while steps > 0:
+        grad_x, grad_y = calc_potential_field_neg_gradient(target_x, target_y, physical_space)
+        angle = (math.atan2(grad_y, grad_x)) % (2 * math.pi)
+        target_x += physical_user.v * math.cos(angle)
+        target_y += physical_user.v * math.sin(angle)
+        steps -= 1
+    print("target_x: ", target_x, "target_y: ", target_y)
+    physical_user.angle = (math.atan2(target_y - physical_user.y, target_x - physical_user.x)) % (2 * math.pi)
+    print(f"Target angle: {physical_user.angle / math.pi * 180}")
+    return physical_user
+
+def update_reset(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+    algorithm="SFR2G"
+):
+    """
     Return new UserInfo when RESET. Implement your RESET logic here.
     """
-    physical_user.angle = (physical_user.angle + math.pi) % (2 * math.pi)
+    if algorithm == "MR2C":
+        return update_reset_MR2C(physical_user, virtual_user, physical_space, virtual_space, delta)
+    elif algorithm == "R2G":
+        return update_reset_R2G(physical_user, virtual_user, physical_space, virtual_space, delta)
+    elif algorithm == "SFR2G":
+        return update_reset_SFR2G(physical_user, virtual_user, physical_space, virtual_space, delta)
+    else:
+        physical_user.angle = (physical_user.angle + math.pi) % (2 * math.pi)
     return physical_user
