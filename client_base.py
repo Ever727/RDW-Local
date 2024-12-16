@@ -2,7 +2,7 @@ import asyncio
 import websockets
 import json
 
-# from client_logic import update_user, update_reset
+from controller.client_logic import judge_reset
 from utils.constants import *
 from utils.space import *
 import math
@@ -75,9 +75,9 @@ async def user_loop(websocket, path):
             virtual_user = UserInfo(
                 data["virtual"]["user_x"],
                 data["virtual"]["user_y"],
-                data["virtual"]["user_direction"],
-                data["virtual_v"],
-                data["virtual_w"],
+                (data["virtual"]["user_direction"] + math.pi * 2) % (math.pi * 2),
+                data["user_v"],
+                data["user_w"],
             )
             delta_t = data["delta_t"]
             need_reset = data["need_reset"]
@@ -95,8 +95,27 @@ async def user_loop(websocket, path):
                     }
                 )
             else:
-                has_reset = False
-                if is_universal:
+                has_reset = judge_reset(
+                    physical_user, virtual_user, physical_space, virtual_space, delta_t
+                )
+                if has_reset:
+                    user = update_reset(
+                        physical_user,
+                        virtual_user,
+                        physical_space,
+                        virtual_space,
+                        delta_t,
+                    )
+                    message = json.dumps(
+                        {
+                            "type": "running",
+                            "user_x": user.x,
+                            "user_y": user.y,
+                            "user_direction": user.angle,
+                            "reset": True,
+                        }
+                    )
+                elif is_universal:
                     user, has_reset = update_user(
                         physical_user,
                         virtual_user,
