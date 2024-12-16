@@ -1,11 +1,19 @@
+import time
 from utils.constants import *
 from utils.space import *
 from utils.misc import *
 import math
 
+# Global variables for S2C and S2O
 previous_rotation = 0
 temporary_target_use = False
 temporary_target_position = (0, 0)
+
+# Global variables for ARC
+prev_rota_alignment = -1.0
+cur_rota_alignment = -1.0
+prev_rota_gain = 1.0
+last_reset_time = 0
 
 
 def calc_gain_generalized(
@@ -199,13 +207,84 @@ def calc_gain_S2O(user: UserInfo, physical_space: Space, delta: float):
     return calc_gain_generalized(user, delta, target_angle, target_distance)
 
 
+def calc_gain_ARC(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+):
+    global prev_rota_alignment, cur_rota_alignment, prev_rota_gain
+
+    phys_distance_front = distance_to_obstacle(physical_user, physical_space)
+    phys_distance_right = distance_to_obstacle(
+        physical_user, physical_space, math.pi / 2
+    )
+    phys_distance_left = distance_to_obstacle(
+        physical_user, physical_space, -math.pi / 2
+    )
+
+    virt_distance_front = distance_to_obstacle(virtual_user, virtual_space)
+    virt_distance_right = distance_to_obstacle(virtual_user, virtual_space, math.pi / 2)
+    virt_distance_left = distance_to_obstacle(virtual_user, virtual_space, -math.pi / 2)
+
+    cur_rota_alignment = align(
+        physical_user, virtual_user, physical_space, virtual_space
+    )
+    print(
+        f"phys_distance_front: {phys_distance_front}, virt_distance_front: {virt_distance_front}, cur_rota_alignment: {cur_rota_alignment}"
+    )
+    print(
+        f"phys_distance_right: {phys_distance_right}, virt_distance_right: {virt_distance_right}"
+    )
+    print(
+        f"phys_distance_left: {phys_distance_left}, virt_distance_left: {virt_distance_left}"
+    )
+
+    if cur_rota_alignment == 0:
+        return 1, 1, INF_CUR_GAIN_R, 1
+    else:
+        trans_gain = clamp(
+            phys_distance_front / virt_distance_front,
+            MIN_TRANS_GAIN,
+            MAX_TRANS_GAIN,
+        )
+
+        if cur_rota_alignment > prev_rota_alignment:
+            rota_gain = (
+                1 - ROTA_GAIN_SMOOTHING
+            ) * prev_rota_gain + ROTA_GAIN_SMOOTHING * MIN_ROT_GAIN
+        else:
+            rota_gain = (
+                1 - ROTA_GAIN_SMOOTHING
+            ) * prev_rota_gain + ROTA_GAIN_SMOOTHING * MAX_ROT_GAIN
+
+        prev_rota_alignment = cur_rota_alignment
+        prev_rota_gain = rota_gain
+
+        misalign_left = phys_distance_left - virt_distance_left
+        misalign_right = virt_distance_right - phys_distance_right
+        scale_factor = abs(min(1.0, max(misalign_left, misalign_right)))
+        if scale_factor == 0:
+            scale_factor = 1e-6
+
+        rota_direction = 1 if misalign_left < misalign_right else -1
+
+        cur_gain = max(MIN_CUR_GAIN_R, MIN_CUR_GAIN_R / scale_factor) * PIXEL
+
+        print(
+            f"Alignment: {cur_rota_alignment}, Trans gain: {trans_gain}, Rota gain: {rota_gain}, Cur gain: {cur_gain}, Rota direction: {rota_direction}"
+        )
+        return trans_gain, rota_gain, cur_gain, rota_direction
+
+
 def calc_gain(
     physical_user: UserInfo,
     virtual_user: UserInfo,
     physical_space: Space,
     virtual_space: Space,
     delta: float,
-    algorithm="S2C",
+    algorithm="ARC",
 ):
     """
     Return three gains and the direction (+1 or -1) when cur_gain used. Implement your own logic here.
@@ -214,8 +293,62 @@ def calc_gain(
         return calc_gain_S2C(physical_user, physical_space, delta)
     elif algorithm == "S2O":
         return calc_gain_S2O(physical_user, physical_space, delta)
+    elif algorithm == "ARC":
+        return calc_gain_ARC(
+            physical_user, virtual_user, physical_space, virtual_space, delta
+        )
     else:
         return MAX_TRANS_GAIN, MAX_ROT_GAIN, INF_CUR_GAIN_R, 1
+
+
+def reset_ARC(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+):
+    """
+    Return new UserInfo when RESET. Implement your own logic here.
+    """
+    sample_directions = [(2 * math.pi) / SAMPLE_RATE * i for i in range(SAMPLE_RATE)]
+    closest_wall_normal = physical_space.nearest_obstacle_normal(physical_user)
+    virt_dist_front = distance_to_obstacle(virtual_user, virtual_space)
+
+    best_loss = float("inf")
+    best_angle = 0
+    best_under_loss = float("inf")
+    best_under_angle = 0
+
+    for angle in sample_directions:
+        direction = (
+            math.cos(angle + physical_user.angle),
+            math.sin(angle + physical_user.angle),
+        )
+        direction_arr = np.array(direction)
+        closest_wall_normal_arr = np.array(closest_wall_normal)
+
+        if np.dot(direction_arr, closest_wall_normal_arr) < 1e-6:
+            continue
+
+        phys_dist_front = distance_to_obstacle(physical_user, physical_space, angle)
+        loss = abs(phys_dist_front - virt_dist_front)
+
+        if loss < best_loss:
+            best_loss = loss
+            best_angle = angle
+
+        if phys_dist_front < virt_dist_front:
+            if loss < best_under_loss:
+                best_under_loss = loss
+                best_under_angle = angle
+
+    if best_loss == float("inf"):
+        best_angle = best_under_angle
+
+    physical_user.angle = (best_angle + physical_user.angle) % (2 * math.pi)
+
+    return physical_user
 
 
 def update_reset(
@@ -224,9 +357,54 @@ def update_reset(
     physical_space: Space,
     virtual_space: Space,
     delta: float,
+    algorithm="ARC",
 ):
     """
     Return new UserInfo when RESET. Implement your RESET logic here.
     """
-    physical_user.angle = (physical_user.angle + math.pi) % (2 * math.pi)
-    return physical_user
+    if algorithm == "ARC":
+        return reset_ARC(
+            physical_user, virtual_user, physical_space, virtual_space, delta
+        )
+    else:
+        physical_user.angle = (physical_user.angle + math.pi) % (2 * math.pi)
+        return physical_user
+
+
+def need_reset_ARC(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+):
+    global last_reset_time
+
+    distance, object = physical_space.closest_obstacle(physical_user.x, physical_user.y)
+    print(f"Distance to closest obstacle: {distance}, Object: {object}")
+    if distance < 0.7 * PIXEL:
+        current_time = time.time()
+        print(f"Current time: {current_time}, Last reset time: {last_reset_time}")
+        if current_time - last_reset_time > 0.3:
+            last_reset_time = current_time
+            return True
+    return False
+
+
+def judge_reset(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+    algorithm="ARC",
+):
+    """
+    Return True if need reset, otherwise False. Implement your own logic here.
+    """
+    if algorithm == "ARC":
+        return need_reset_ARC(
+            physical_user, virtual_user, physical_space, virtual_space, delta
+        )
+    else:
+        return False
