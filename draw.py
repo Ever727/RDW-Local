@@ -13,16 +13,20 @@ data = ""
 
 with open(file_path, 'r', encoding='utf-8') as file:
     data = file.read()
-file.close()
+
 file_path = file_path[5:-4]  
 
 # 将数据拆分成独立的消息
 lines = data.strip().split('\n')
 
+# 过滤掉不符合格式的行
+lines = [line for line in lines if line.startswith("{'type':")]
+
 # 初始化变量
 border = []
 obstacles = []
 user_positions = []
+reset_count = 0  # 统计 need_reset 为 True 的次数
 
 for line in lines:
     # 将字符串形式的字典转换为实际的字典对象
@@ -34,6 +38,10 @@ for line in lines:
         border = physical_env['border']
         obstacles = physical_env['obstacle_list']
     elif message['type'] == 'running':
+        # 检查 need_reset 是否为 True
+        if 'need_reset' in message and message['need_reset']:
+            reset_count += 1
+        
         # 获取用户位置
         physical_state = message['physical']
         user_x = physical_state['user_x']
@@ -52,12 +60,15 @@ ax.plot(border_x, border_y, 'k-', linewidth=2)  # 黑色线条表示边界
 for obstacle in obstacles:
     obs_x = [point['x'] for point in obstacle] + [obstacle[0]['x']]
     obs_y = [point['y'] for point in obstacle] + [obstacle[0]['y']]
-    ax.fill(obs_x, obs_y, 'red')  # 灰色填充的障碍物
+    ax.fill(obs_x, obs_y, 'red')  # 红色填充的障碍物
 
 # 绘制用户行动路线
 if user_positions:
     user_xs, user_ys = zip(*user_positions)
-    ax.plot(user_xs, user_ys, 'k-', linewidth=0.8, label='User Path')  # 红色线连接用户位置
+    ax.plot(user_xs, user_ys, 'k-', linewidth=0.8, label='User Path')  # 黑色线连接用户位置
+
+# 在图中显示 reset 次数
+reset_text = f"Reset Count: {reset_count}"
 
 # 设置坐标轴范围
 ax.set_xlim(0, physical_env['width'])
@@ -69,8 +80,10 @@ ax.set_aspect('equal', 'box')
 # 添加标签和标题
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
-ax.set_title('User Path ' + file_path)
+ax.set_title('User Path ' + file_path + '\n' + reset_text)
 ax.legend()
 
-# 显示图形
+# 保存图形
 plt.savefig('graphs/' + file_path + '.png')
+print(f"图形保存至: graphs/{file_path}.png")
+print(f"Reset Count: {reset_count}")

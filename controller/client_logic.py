@@ -1,11 +1,20 @@
+import time
 from utils.constants import *
 from utils.space import *
 from utils.misc import *
 import math
+import torch
 
+# Global variables for S2C and S2O
 previous_rotation = 0
 temporary_target_use = False
 temporary_target_position = (0, 0)
+
+# Global variables for ARC
+prev_rota_alignment = -1.0
+cur_rota_alignment = -1.0
+prev_rota_gain = 1.0
+last_reset_time = 0
 
 
 def calc_gain_generalized(
@@ -97,7 +106,7 @@ def calc_gain_generalized(
         f"Rotation gain: {MAX_ROT_GAIN}, direction: {rotation_direction}, curvature radius: {curvature_radius}"
     )
 
-    return MAX_TRANS_GAIN, MAX_ROT_GAIN, curvature_radius, rotation_direction
+    return MAX_TRANS_GAIN, MAX_ROT_GAIN, MIN_CUR_GAIN_R * PIXEL, rotation_direction
 
 
 def calc_gain_S2C(user: UserInfo, physical_space: Space, delta: float):
@@ -197,6 +206,128 @@ def calc_gain_S2O(user: UserInfo, physical_space: Space, delta: float):
     )
 
     return calc_gain_generalized(user, delta, target_angle, target_distance)
+
+
+class FixedNormal(torch.distributions.Normal):
+    def log_probs(self, actions):
+        return super().log_prob(actions).sum(-1, keepdim=True)
+
+    def entrop(self):
+        return super().entropy().sum(-1)
+
+    def mode(self):
+        return self.mean
+
+
+def split_action(action):
+    gt, gr, gc = action[0]
+    gt = 1.060 + 0.2 * gt
+    gr = 1.145 + 0.345 * gr
+    gc = 0.05 * gc
+    return gt, gr, gc
+
+
+def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path: str):
+    """
+    Calculate gains for Reinforcement Learning (RL) using the generalized redirected walking mechanisms.
+    """
+    # Load the RL model
+    model = torch.load(model_path)
+    height, width = 200, 200
+    obs = []
+    obs.extend(
+        10
+        * [(user.x) / height, (user.y) / width, (user.angle + math.pi) / (2 * math.pi)]
+    )
+    observation = torch.Tensor(obs)
+    observation = torch.Tensor(observation).unsqueeze(0)
+    with torch.no_grad():
+        _value, action_mean, action_log_std = model.act(observation)
+        dist = FixedNormal(action_mean, action_log_std)
+        action = dist.mode()
+    gt, gr, gc = split_action(action)
+    gt, gr, gc = gt.item(), gr.item(), 1 / gc.item()
+
+    if gc > 0:
+        direction = 1
+    else:
+        direction = -1
+        gc = -gc
+    print(
+        f"Translational gain: {gt}, Rotational gain: {gr}, Curvature gain: {gc}, Direction: {direction}"
+    )
+    return gt, gr, gc, direction
+
+
+def calc_gain_ARC(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+):
+    global prev_rota_alignment, cur_rota_alignment, prev_rota_gain
+
+    phys_distance_front = distance_to_obstacle(physical_user, physical_space)
+    phys_distance_right = distance_to_obstacle(
+        physical_user, physical_space, math.pi / 2
+    )
+    phys_distance_left = distance_to_obstacle(
+        physical_user, physical_space, -math.pi / 2
+    )
+
+    virt_distance_front = distance_to_obstacle(virtual_user, virtual_space)
+    virt_distance_right = distance_to_obstacle(virtual_user, virtual_space, math.pi / 2)
+    virt_distance_left = distance_to_obstacle(virtual_user, virtual_space, -math.pi / 2)
+
+    cur_rota_alignment = align(
+        physical_user, virtual_user, physical_space, virtual_space
+    )
+    print(
+        f"phys_distance_front: {phys_distance_front}, virt_distance_front: {virt_distance_front}, cur_rota_alignment: {cur_rota_alignment}"
+    )
+    print(
+        f"phys_distance_right: {phys_distance_right}, virt_distance_right: {virt_distance_right}"
+    )
+    print(
+        f"phys_distance_left: {phys_distance_left}, virt_distance_left: {virt_distance_left}"
+    )
+
+    if cur_rota_alignment == 0:
+        return 1, 1, INF_CUR_GAIN_R, 1
+    else:
+        trans_gain = clamp(
+            phys_distance_front / virt_distance_front,
+            MIN_TRANS_GAIN,
+            MAX_TRANS_GAIN,
+        )
+
+        if cur_rota_alignment > prev_rota_alignment:
+            rota_gain = (
+                1 - ROTA_GAIN_SMOOTHING
+            ) * prev_rota_gain + ROTA_GAIN_SMOOTHING * MIN_ROT_GAIN
+        else:
+            rota_gain = (
+                1 - ROTA_GAIN_SMOOTHING
+            ) * prev_rota_gain + ROTA_GAIN_SMOOTHING * MAX_ROT_GAIN
+
+        prev_rota_alignment = cur_rota_alignment
+        prev_rota_gain = rota_gain
+
+        misalign_left = phys_distance_left - virt_distance_left
+        misalign_right = virt_distance_right - phys_distance_right
+        scale_factor = abs(min(1.0, max(misalign_left, misalign_right)))
+        if scale_factor == 0:
+            scale_factor = 1e-6
+
+        rota_direction = 1 if misalign_left < misalign_right else -1
+
+        cur_gain = max(MIN_CUR_GAIN_R, MIN_CUR_GAIN_R / scale_factor) * PIXEL
+
+        print(
+            f"Alignment: {cur_rota_alignment}, Trans gain: {trans_gain}, Rota gain: {rota_gain}, Cur gain: {cur_gain}, Rota direction: {rota_direction}"
+        )
+        return trans_gain, rota_gain, cur_gain, rota_direction
 
 def calc_potential_field_neg_gradient(user_x, user_y, physical_space: Space):
     border = physical_space.border
@@ -329,6 +460,12 @@ def calc_gain(
         return calc_gain_S2C(physical_user, physical_space, delta)
     elif algorithm == "S2O":
         return calc_gain_S2O(physical_user, physical_space, delta)
+    elif algorithm == "RL":
+        return calc_gain_RL(physical_user, physical_space, delta, "models/5900.pth")
+    elif algorithm == "ARC":
+        return calc_gain_ARC(
+            physical_user, virtual_user, physical_space, virtual_space, delta
+        )
     elif algorithm == "APF":
         return calc_gain_APF(physical_user, physical_space, delta)
     else:
@@ -396,6 +533,55 @@ def update_reset_R2G(
     physical_user.angle = (math.atan2(grad_y, grad_x)) % (2 * math.pi)
     return physical_user
 
+def reset_ARC(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+):
+    """
+    Return new UserInfo when RESET. Implement your own logic here.
+    """
+    sample_directions = [(2 * math.pi) / SAMPLE_RATE * i for i in range(SAMPLE_RATE)]
+    closest_wall_normal = physical_space.nearest_obstacle_normal(physical_user)
+    virt_dist_front = distance_to_obstacle(virtual_user, virtual_space)
+
+    best_loss = float("inf")
+    best_angle = 0
+    best_under_loss = float("inf")
+    best_under_angle = 0
+
+    for angle in sample_directions:
+        direction = (
+            math.cos(angle + physical_user.angle),
+            math.sin(angle + physical_user.angle),
+        )
+        direction_arr = np.array(direction)
+        closest_wall_normal_arr = np.array(closest_wall_normal)
+
+        if np.dot(direction_arr, closest_wall_normal_arr) < 1e-6:
+            continue
+
+        phys_dist_front = distance_to_obstacle(physical_user, physical_space, angle)
+        loss = abs(phys_dist_front - virt_dist_front)
+
+        if loss < best_loss:
+            best_loss = loss
+            best_angle = angle
+
+        if phys_dist_front < virt_dist_front:
+            if loss < best_under_loss:
+                best_under_loss = loss
+                best_under_angle = angle
+
+    if best_loss == float("inf"):
+        best_angle = best_under_angle
+
+    physical_user.angle = (best_angle + physical_user.angle) % (2 * math.pi)
+
+    return physical_user
+
 def update_reset_SFR2G(
     physical_user: UserInfo,
     virtual_user: UserInfo,
@@ -427,17 +613,65 @@ def update_reset(
     physical_space: Space,
     virtual_space: Space,
     delta: float,
-    algorithm="SFR2G"
+    algorithm="APF",
+    reset_algorithm="MR2C",
 ):
     """
     Return new UserInfo when RESET. Implement your RESET logic here.
     """
-    if algorithm == "MR2C":
-        return update_reset_MR2C(physical_user, virtual_user, physical_space, virtual_space, delta)
-    elif algorithm == "R2G":
-        return update_reset_R2G(physical_user, virtual_user, physical_space, virtual_space, delta)
-    elif algorithm == "SFR2G":
-        return update_reset_SFR2G(physical_user, virtual_user, physical_space, virtual_space, delta)
+    if algorithm == "ARC":
+        return reset_ARC(
+            physical_user, virtual_user, physical_space, virtual_space, delta
+        )
+    elif algorithm == "APF":
+        if reset_algorithm == "MR2C":
+            return update_reset_MR2C(physical_user, virtual_user, physical_space, virtual_space, delta)
+        elif reset_algorithm == "R2G":
+            return update_reset_R2G(physical_user, virtual_user, physical_space, virtual_space, delta)
+        elif reset_algorithm == "SFR2G":
+            return update_reset_SFR2G(physical_user, virtual_user, physical_space, virtual_space, delta)
+        else:
+            physical_user.angle = (physical_user.angle + math.pi) % (2 * math.pi)
+            return physical_user
     else:
         physical_user.angle = (physical_user.angle + math.pi) % (2 * math.pi)
-    return physical_user
+        return physical_user
+
+
+def need_reset_ARC(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+):
+    global last_reset_time
+
+    distance, object = physical_space.closest_obstacle(physical_user.x, physical_user.y)
+    print(f"Distance to closest obstacle: {distance}, Object: {object}")
+    if distance < 0.7 * PIXEL:
+        current_time = time.time()
+        print(f"Current time: {current_time}, Last reset time: {last_reset_time}")
+        if current_time - last_reset_time > 0.3:
+            last_reset_time = current_time
+            return True
+    return False
+
+
+def judge_reset(
+    physical_user: UserInfo,
+    virtual_user: UserInfo,
+    physical_space: Space,
+    virtual_space: Space,
+    delta: float,
+    algorithm="APF",
+):
+    """
+    Return True if need reset, otherwise False. Implement your own logic here.
+    """
+    if algorithm == "ARC":
+        return need_reset_ARC(
+            physical_user, virtual_user, physical_space, virtual_space, delta
+        )
+    else:
+        return False

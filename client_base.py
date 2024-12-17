@@ -2,7 +2,7 @@ import asyncio
 import websockets
 import json
 
-# from client_logic import update_user, update_reset
+from controller.client_logic import judge_reset
 from utils.constants import *
 from utils.space import *
 import math
@@ -83,7 +83,12 @@ async def user_loop(websocket, path):
             need_reset = data["need_reset"]
             if need_reset:
                 user = update_reset(
-                    physical_user, virtual_user, physical_space, virtual_space, delta_t
+                    physical_user,
+                    virtual_user,
+                    physical_space,
+                    virtual_space,
+                    delta_t,
+                    controller,
                 )
                 message = json.dumps(
                     {
@@ -95,8 +100,33 @@ async def user_loop(websocket, path):
                     }
                 )
             else:
-                has_reset = False
-                if is_universal:
+                has_reset = judge_reset(
+                    physical_user,
+                    virtual_user,
+                    physical_space,
+                    virtual_space,
+                    delta_t,
+                    controller,
+                )
+                if has_reset:
+                    user = update_reset(
+                        physical_user,
+                        virtual_user,
+                        physical_space,
+                        virtual_space,
+                        delta_t,
+                        controller,
+                    )
+                    message = json.dumps(
+                        {
+                            "type": "running",
+                            "user_x": user.x,
+                            "user_y": user.y,
+                            "user_direction": user.angle,
+                            "reset": True,
+                        }
+                    )
+                elif is_universal:
                     user, has_reset = update_user(
                         physical_user,
                         virtual_user,
@@ -120,6 +150,7 @@ async def user_loop(websocket, path):
                         physical_space,
                         virtual_space,
                         delta_t,
+                        controller,
                     )
                     # new_user = calc_move_with_gain(user, trans_gain, rot_gain, cur_gain_r, cur_direction, delta_t)
                     # if physical_space.in_obstacle(new_user.x, new_user.y):
@@ -153,6 +184,7 @@ async def user_loop(websocket, path):
                 calc_time,
                 "Calc time per frame: ",
                 calc_time / nn,
+                flush=True,
             )
 
 
@@ -166,8 +198,10 @@ if __name__ == "__main__":
         action="store_true",
     )
     parser.add_argument("-f", "--file", default="controller/client_logic.py")
+    parser.add_argument("-c", "--controller", default="S2O")
     args = parser.parse_args()
 
+    controller = args.controller
     file_s = args.file
     is_universal = args.universal
     start_server = websockets.serve(user_loop, "localhost", 8765)
