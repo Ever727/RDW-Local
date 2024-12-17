@@ -3888,4 +3888,4 @@
 {'type': 'running', 'physical': {'user_x': 314.0402970215534, 'user_y': 1174.0607370352325, 'user_direction': 5.092549018024954}, 'virtual': {'user_x': 3770.4297722922465, 'user_y': 9642.863328278323, 'user_direction': 1.8420716887209754}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 {'type': 'running', 'physical': {'user_x': 316.80971530835876, 'user_y': 1166.555384121964, 'user_direction': 5.065882351358288}, 'virtual': {'user_x': 3770.077534876182, 'user_y': 9644.129769515786, 'user_direction': 1.8420716887209754}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 {'type': 'end'}
-All time:  6.6402671337127686 Calc time:  0.3915715217590332 Calc time per frame:  0.00010071283995859907
+All time:  6.407026290893555 Calc time:  0.39082908630371094 Calc time per frame:  0.00010052188433737421

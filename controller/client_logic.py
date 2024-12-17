@@ -297,7 +297,7 @@ def calc_gain_ARC(
         return 1, 1, INF_CUR_GAIN_R, 1
     else:
         trans_gain = clamp(
-            phys_distance_front / virt_distance_front,
+            phys_distance_front / virt_distance_front if virt_distance_front > 0 else MAX_TRANS_GAIN,
             MIN_TRANS_GAIN,
             MAX_TRANS_GAIN,
         )

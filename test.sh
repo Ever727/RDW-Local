@@ -1,7 +1,7 @@
 times=1
 environment=1
 nums=25
-algorithms=("APF" "S2C" "S2O" "ARC" "RL")  # 定义算法列表
+algorithms=("ARC" "RL")  # 定义算法列表
 
 # Function to handle cleanup on Ctrl+C
 cleanup() {

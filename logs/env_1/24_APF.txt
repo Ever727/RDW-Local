@@ -3666,4 +3666,4 @@
 {'type': 'running', 'physical': {'user_x': 155.40042692798897, 'user_y': 882.4022909903833, 'user_direction': 1.995155286744825}, 'virtual': {'user_x': 2524.6545764554057, 'user_y': 8567.769495697517, 'user_direction': 1.8412745349790847}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 {'type': 'running', 'physical': {'user_x': 152.90925814527182, 'user_y': 888.2423679899457, 'user_direction': 1.9739912655808038}, 'virtual': {'user_x': 2523.3208007559156, 'user_y': 8572.579828849446, 'user_direction': 1.8412745349790847}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 {'type': 'end'}
-All time:  6.2558698654174805 Calc time:  0.3733992576599121 Calc time per frame:  0.00010185468021274199
+All time:  6.560478448867798 Calc time:  0.3745687007904053 Calc time per frame:  0.00010217367724779194

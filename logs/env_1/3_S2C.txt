@@ -17975,4 +17975,4 @@ Target angle: 0.8424205570883339, distance: 383.55100864500673, angle diff: 2.12
 Basic rotation angle: 0.0, rotation gain: 0.0022856107831977727
 Rotation gain: 1.24, direction: -1, curvature radius: 2500000
 {'type': 'end'}
-All time:  5.995840787887573 Calc time:  0.3834953308105469 Calc time per frame:  0.00010661532688644617
+All time:  5.943893909454346 Calc time:  0.39002537727355957 Calc time per frame:  0.00010843074152726149
