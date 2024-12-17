@@ -336,13 +336,13 @@ def calc_gain(
 
 
 def collision_with_obstacle(space, user):
-    print("border: ", space.border)
+    # print("border: ", space.border)
     for obstacle in space.obstacle_list:
         polygon = Polygon(obstacle)
         next_x = user.x + user.v * math.cos(user.angle)
         next_y = user.y + user.v * math.sin(user.angle)
         if polygon.contains(Point(next_x, next_y)):
-            print("next_x: ", next_x, "next_y: ", next_y)
+            # print("next_x: ", next_x, "next_y: ", next_y)
             return True, obstacle
     return False, None
 
@@ -363,7 +363,7 @@ def update_reset_MR2C(
     # detect collision with obstacles after new angle is set
     collision, obstacle = collision_with_obstacle(physical_space, physical_user)
     if collision:
-        print(f"Collision with obstacle: {obstacle}")
+        # print(f"Collision with obstacle: {obstacle}")
          # If there is a collision, adjust the angle to be perpendicular to the obstacle's boundary
         # Calculate the direction of the obstacle (the closest point on its boundary)
         
@@ -379,7 +379,7 @@ def update_reset_MR2C(
         
         # Set the user angle to this new angle
         physical_user.angle = angle_to_avoid_obstacle
-        print(f"Adjusted angle to avoid obstacle: {angle_to_avoid_obstacle}")
+        # print(f"Adjusted angle to avoid obstacle: {angle_to_avoid_obstacle}")
     return physical_user
 
 def update_reset_R2G(
@@ -408,17 +408,17 @@ def update_reset_SFR2G(
     """
     steps = 10
     target_x, target_y = physical_user.x, physical_user.y
-    print("target_x: ", target_x, "target_y: ", target_y)
-    print("physical_user.v: ", physical_user.v)
+    # print("target_x: ", target_x, "target_y: ", target_y)
+    # print("physical_user.v: ", physical_user.v)
     while steps > 0:
         grad_x, grad_y = calc_potential_field_neg_gradient(target_x, target_y, physical_space)
         angle = (math.atan2(grad_y, grad_x)) % (2 * math.pi)
         target_x += physical_user.v * math.cos(angle)
         target_y += physical_user.v * math.sin(angle)
         steps -= 1
-    print("target_x: ", target_x, "target_y: ", target_y)
+    # print("target_x: ", target_x, "target_y: ", target_y)
     physical_user.angle = (math.atan2(target_y - physical_user.y, target_x - physical_user.x)) % (2 * math.pi)
-    print(f"Target angle: {physical_user.angle / math.pi * 180}")
+    # print(f"Target angle: {physical_user.angle / math.pi * 180}")
     return physical_user
 
 def update_reset(
