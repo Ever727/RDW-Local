@@ -223,7 +223,7 @@ def split_action(action):
     gt, gr, gc = action[0]
     gt = 1.060 + 0.2 * gt
     gr = 1.145 + 0.345 * gr
-    gc = 0.05 * gc
+    gc = gc / 300.0
     return gt, gr, gc
 
 
@@ -233,12 +233,13 @@ def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path
     """
     # Load the RL model
     model = torch.load(model_path)
-    height, width = 200, 200
+    height, width = physical_space.gethw()
     obs = []
     obs.extend(
         10
-        * [(user.x) / height, (user.y) / width, (user.angle + math.pi) / (2 * math.pi)]
+        * [(user.x) / height, (user.y) / width, ((math.pi + user.angle) %(2 * math.pi) )/ (2 * math.pi)]
     )
+    #print(user.x, user.y, user.angle)
     observation = torch.Tensor(obs)
     observation = torch.Tensor(observation).unsqueeze(0)
     with torch.no_grad():
@@ -253,9 +254,7 @@ def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path
     else:
         direction = -1
         gc = -gc
-    print(
-        f"Translational gain: {gt}, Rotational gain: {gr}, Curvature gain: {gc}, Direction: {direction}"
-    )
+    #print( f"Translational gain: {gt}, Rotational gain: {gr}, Curvature gain: {gc}, Direction: {direction}"  )
     return gt, gr, gc, direction
 
 
