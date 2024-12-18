@@ -10,7 +10,7 @@ import argparse
 import importlib.util
 import os
 from utils.misc import calc_move_with_gain
-
+from controller.client_logic import RL_reset_buffer
 import time
 
 
@@ -40,6 +40,7 @@ async def user_loop(websocket, path):
     all_time = 0
     calc_time = 0
     nn = 0
+    RL_reset_buffer()
     r_time = time.time()
     calc_gain = None
     update_user = None

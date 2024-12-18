@@ -226,6 +226,10 @@ def split_action(action):
     gc = gc / 300.0
     return gt, gr, gc
 
+obs_buffer = []
+def RL_reset_buffer():
+    global obs_buffer
+    obs_buffer = []
 
 def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path: str):
     """
@@ -235,10 +239,16 @@ def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path
     model = torch.load(model_path)
     height, width = physical_space.gethw()
     obs = []
-    obs.extend(
-        10
-        * [(user.x) / height, (user.y) / width, ((math.pi + user.angle) %(2 * math.pi) )/ (2 * math.pi)]
-    )
+    global obs_buffer
+    if len(obs_buffer) == 0:
+        obs_buffer.extend(
+            10
+            * [(user.x) / height, (user.y) / width, ((math.pi + user.angle) %(2 * math.pi) )/ (2 * math.pi)]
+        )
+    else:
+        obs_buffer = obs_buffer[3:]
+        obs_buffer.extend( [(user.x) / height, (user.y) / width, ((math.pi + user.angle) %(2 * math.pi) )/ (2 * math.pi)]  )
+    obs.extend(obs_buffer)
     #print(user.x, user.y, user.angle)
     observation = torch.Tensor(obs)
     observation = torch.Tensor(observation).unsqueeze(0)
