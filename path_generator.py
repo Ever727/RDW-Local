@@ -3,6 +3,8 @@ import math
 import random
 import sys
 
+from shapely import Point, Polygon
+
 
 def is_outside_border(point, border):
     """
@@ -14,6 +16,30 @@ def is_outside_border(point, border):
     min_y = min(p["y"] for p in border)
     max_y = max(p["y"] for p in border)
     return not (min_x <= x <= max_x and min_y <= y <= max_y)
+
+
+def is_in_obstacle(point, obstacle_list):
+    x, y = point["x"], point["y"]
+    for obstacle in obstacle_list:
+        min_x = min(p["x"] for p in obstacle)
+        max_x = max(p["x"] for p in obstacle)
+        min_y = min(p["y"] for p in obstacle)
+        max_y = max(p["y"] for p in obstacle)
+        if min_x <= x <= max_x and min_y <= y <= max_y:
+            return True
+    return False
+
+
+def random_point_in_polygon(polygon):
+    """
+    随机生成一个在多边形内的点。
+    """
+    min_x = min(p["x"] for p in polygon)
+    max_x = max(p["x"] for p in polygon)
+    min_y = min(p["y"] for p in polygon)
+    max_y = max(p["y"] for p in polygon)
+    x, y = random.uniform(min_x, max_x), random.uniform(min_y, max_y)
+    return x, y
 
 
 def move_along_angle(x, y, angle, distance):
@@ -31,10 +57,12 @@ def adjust_angle(current_angle):
     """
     return random.uniform(0, 2 * math.pi)
 
+
 def line_intersect(p1, p2, q1, q2):
     """
     计算两条线段 (p1->p2) 和 (q1->q2) 的交点
     """
+
     def det(a, b, c, d):
         return a * d - b * c
 
@@ -51,10 +79,15 @@ def line_intersect(p1, p2, q1, q2):
     py = det(det(x1, y1, x2, y2), y1 - y2, det(x3, y3, x4, y4), y3 - y4) / denom
 
     # 检查交点是否在线段范围内
-    if (min(x1, x2) <= px <= max(x1, x2) and min(y1, y2) <= py <= max(y1, y2) and
-        min(x3, x4) <= px <= max(x3, x4) and min(y3, y4) <= py <= max(y3, y4)):
+    if (
+        min(x1, x2) <= px <= max(x1, x2)
+        and min(y1, y2) <= py <= max(y1, y2)
+        and min(x3, x4) <= px <= max(x3, x4)
+        and min(y3, y4) <= py <= max(y3, y4)
+    ):
         return {"x": px, "y": py}
     return None
+
 
 def find_collision_point(start, end, border):
     """
@@ -67,6 +100,7 @@ def find_collision_point(start, end, border):
         if intersection:
             return intersection
     return end  # 如果未找到交点，返回终点（备用）
+
 
 def process_file(base_path, file_path):
     """
@@ -83,6 +117,44 @@ def process_file(base_path, file_path):
         border = data["border_virt"]
         obstacles = data["obstacles_virt"]
 
+        # 现实环境
+        current_position_phys = data["initial_user_phys"]
+        border_phys = data["border_phys"]
+        obstacles_phys = data["obstacles_phys"]
+
+        # 随机化初始位置
+        current_position_phys["x"], current_position_phys["y"] = (
+            random_point_in_polygon(border_phys)
+        )
+        while is_outside_border(current_position_phys, border_phys) or is_in_obstacle(
+            current_position_phys, obstacles_phys
+        ):
+            current_position_phys["x"], current_position_phys["y"] = (
+                random_point_in_polygon(border_phys)
+            )
+
+        current_position_phys["angle"] = random.uniform(0, 2 * math.pi)
+        data["initial_user_phys"] = current_position_phys
+
+        print("初始物理位置：")
+        print(
+            f"x={current_position_phys['x']:.2f}, y={current_position_phys['y']:.2f}, angle={current_position_phys['angle']:.2f}"
+        )
+
+        current_position["x"], current_position["y"] = random_point_in_polygon(border)
+        while is_outside_border(current_position, border) or is_in_obstacle(
+            current_position, obstacles
+        ):
+            current_position["x"], current_position["y"] = random_point_in_polygon(
+                border
+            )
+        data["initial_user_virt"] = current_position
+
+        print("初始虚拟位置：")
+        print(
+            f"x={current_position['x']:.2f}, y={current_position['y']:.2f}, angle={angle:.2f}"
+        )
+
         # 初始化变量
         total_distance = 0
         recorded_points = [{"x": current_position["x"], "y": current_position["y"]}]
@@ -91,19 +163,28 @@ def process_file(base_path, file_path):
         while total_distance < 400:
             # 随机前进 2m ~ 6m
             step_distance = random.uniform(2, 6)
+            angle = adjust_angle(angle)
             new_position = move_along_angle(
                 current_position["x"], current_position["y"], angle, step_distance
             )
 
             # 检查是否碰到边界
-            if is_outside_border(new_position, border):
+            if is_outside_border(new_position, border) or is_in_obstacle(
+                new_position, obstacles
+            ):
+                continue
                 print("碰到边界，调整到边界位置...")
                 # 调整位置到边界，记录当前点
-                collision_point = find_collision_point(current_position, new_position, border)
+                collision_point = find_collision_point(
+                    current_position, new_position, border
+                )
                 recorded_points.append(collision_point)
                 current_position = collision_point
                 angle = (angle + math.pi) % (2 * math.pi)
-                total_distance += math.sqrt((collision_point["x"] - current_position["x"]) ** 2 + (collision_point["y"] - current_position["y"]) ** 2)
+                total_distance += math.sqrt(
+                    (collision_point["x"] - current_position["x"]) ** 2
+                    + (collision_point["y"] - current_position["y"]) ** 2
+                )
                 continue
 
             # 添加新点
@@ -137,7 +218,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 3:
         print("用法: python script.py <base文件路径> <生成的文件名>")
         sys.exit(1)
-    
+
     base_path = sys.argv[1]
     file_path = sys.argv[2]
     process_file(base_path, file_path)
