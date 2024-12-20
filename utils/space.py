@@ -31,7 +31,12 @@ class Space:
         for raw_obstacle in raw_obstacle_list:
             obstacle = [(t["x"], t["y"]) for t in raw_obstacle]
             self.add_obstacle(obstacle)
-
+    def gethw(self):
+        h,w = 0,0
+        for i in range(len(self.border)):
+            h = max(h,self.border[i][1])
+            w = max(w,self.border[i][0])
+        return h,w
     def add_obstacle(self, obstacle):
         self.obstacle_list.append(obstacle)
 

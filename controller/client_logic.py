@@ -233,7 +233,7 @@ def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path
     """
     # Load the RL model
     model = torch.load(model_path)
-    height, width = 200, 200
+    height, width = physical_space.gethw()
     obs = []
     obs.extend(
         10
