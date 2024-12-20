@@ -1,5 +1,5 @@
 nums=25
-algorithms=("RL")  # 定义算法列表
+algorithms=("APF" "S2C" "S2O" "ARC" "RL")  # 定义算法列表
 
 # Function to handle cleanup on Ctrl+C
 cleanup() {
@@ -67,10 +67,10 @@ for environment in {1..2}; do
       uvicorn_pid=$!
       echo "前端进程 PID: $uvicorn_pid"
 
-      sleep 2
+      sleep 0.5
 
       # 启动 firefox.py
-      bash -c "python firefox.py 'test_set/env_${environment}/${times}.json'" &
+      bash -c "python firefox.py 'test_set/env_${environment}/base.json'" &
       python_pid=$!
       echo "浏览器进程 PID: $python_pid"
 

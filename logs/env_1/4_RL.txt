@@ -6841,4 +6841,4 @@ Translational gain: 1.2285182476043701, Rotational gain: 0.8530040979385376, Cur
 {'type': 'running', 'physical': {'user_x': 261.77835123097105, 'user_y': 410.88232473108127, 'user_direction': 4.367673451417058}, 'virtual': {'user_x': 2418.978105072449, 'user_y': 11598.060405900325, 'user_direction': 0.9549713638503822}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Translational gain: 1.225655436515808, Rotational gain: 0.8514750003814697, Curvature gain: 300.60944013217676, Direction: 1
 {'type': 'end'}
-All time:  12.857877016067505 Calc time:  0.33350491523742676 Calc time per frame:  9.714678567941356e-05
+All time:  13.362282752990723 Calc time:  0.3652045726776123 Calc time per frame:  0.00010638059209950839
