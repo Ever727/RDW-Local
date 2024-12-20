@@ -200,3 +200,30 @@ $$
 - 移动过程中，我们动态地检查当前位置，以用户当前方向的垂直方向 7.5m 位置为圆心的圆轨道上是否有障碍物，如果没有障碍物，则应用 S2C 策略。
 
 - 应用任意策略时，如果碰撞次数 > 10，则认为目前局部环境比较复杂，并非最优，我们考虑扩大搜索范围，如果 $\text{complexity}$ 有显著下降，则应用 S2C 策略尝试跳出当前环境。如果没有显著下降，则认为环境依然十分复杂，交给 SRL 策略。
+
+```mermaid
+stateDiagram-v2
+    [*] --> SRL: 初始策略
+
+    SRL --> ARC: dist(q_t^{phys}, q_t^{virt}) < 5m
+    SRL --> APF: complexity > 0.4 (局部区域)
+    SRL --> S2O: 无障碍轨道 (边界中心为圆心, 7.5m 半径)
+    SRL --> S2C: 移动过程中无障碍轨道 (垂直方向 7.5m 圆心)
+
+    ARC --> SRL: dist(q_t^{phys}, q_t^{virt}) >= 5m
+    APF --> SRL: complexity <= 0.4 (局部区域)
+    S2O --> SRL: 轨道上出现障碍物
+    S2C --> SRL: 检测到障碍物或轨道改变
+
+    state "碰撞次数 > 10" as HighCollision
+    state "复杂环境" as ComplexEnv
+    state "简单环境" as SimpleEnv
+
+    SRL --> HighCollision: 碰撞次数 > 10
+    HighCollision --> S2C: complexity 显著下降
+    HighCollision --> SRL: complexity 未显著下降
+
+    ComplexEnv --> APF: complexity > 0.4
+    SimpleEnv --> SRL: complexity < 0.2
+
+```
