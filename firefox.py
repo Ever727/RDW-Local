@@ -11,15 +11,16 @@ json_path = sys.argv[1]
 
 try:
     # 1. 访问网页
+    print("开始访问网页")
     driver.get("http://0.0.0.0:8000")
-    # print("成功访问网页")
+    print("成功访问网页")
 
     # 2. 等待并点击 Input Config 按钮
     input_config_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, "//button[text()='Input Config']"))
     )
     input_config_button.click()
-    # print("成功点击 Input Config 按钮")
+    print("成功点击 Input Config 按钮")
 
     # 3. 上传文件 test.json
     file_input = WebDriverWait(driver, 10).until(

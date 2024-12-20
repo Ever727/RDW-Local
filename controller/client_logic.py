@@ -223,7 +223,7 @@ def split_action(action):
     gt, gr, gc = action[0]
     gt = 1.060 + 0.2 * gt
     gr = 1.145 + 0.345 * gr
-    gc = 0.05 * gc
+    gc = gc / 300
     return gt, gr, gc
 
 
@@ -233,11 +233,11 @@ def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path
     """
     # Load the RL model
     model = torch.load(model_path)
-    height, width = 200, 200
+    height, width, min_x, min_y = physical_space.gethw()
     obs = []
     obs.extend(
         10
-        * [(user.x) / height, (user.y) / width, (user.angle + math.pi) / (2 * math.pi)]
+        * [(user.x - min_x) / width, (user.y - min_y) / height, ((math.pi + user.angle) %(2 * math.pi) )/ (2 * math.pi)]
     )
     observation = torch.Tensor(obs)
     observation = torch.Tensor(observation).unsqueeze(0)

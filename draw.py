@@ -71,8 +71,12 @@ if user_positions:
 reset_text = f"Reset Count: {reset_count}"
 
 # 设置坐标轴范围
-ax.set_xlim(0, physical_env['width'])
-ax.set_ylim(0, physical_env['height'])
+min_x = min(point['x'] for point in border)
+max_x = max(point['x'] for point in border)
+min_y = min(point['y'] for point in border)
+max_y = max(point['y'] for point in border)
+ax.set_xlim(min_x, max_x)
+ax.set_ylim(min_y, max_y)
 
 # 设置等比例显示
 ax.set_aspect('equal', 'box')
