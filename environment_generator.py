@@ -38,6 +38,73 @@ def sort_vertices_clockwise(vertices):
     )
 
 
+# 生成矩形边界
+def generate_rectangular_border():
+    """
+    生成一个矩形边界
+    :return: 矩形的顶点列表，顺时针排序
+    """
+    x1, y1 = random.randint(0, ENVIRONMENT_SIZE // 2), random.randint(
+        0, ENVIRONMENT_SIZE // 2
+    )
+    x2, y2 = random.randint(ENVIRONMENT_SIZE // 2, ENVIRONMENT_SIZE), random.randint(
+        ENVIRONMENT_SIZE // 2, ENVIRONMENT_SIZE
+    )
+    return [
+        {"x": x1, "y": y1},  # 左上角
+        {"x": x2, "y": y1},  # 右上角
+        {"x": x2, "y": y2},  # 右下角
+        {"x": x1, "y": y2},  # 左下角
+    ]
+
+
+# 生成矩形障碍物
+def generate_rectangular_obstacles(existing_obstacles, border, max_obstacles):
+    """
+    生成矩形障碍物，基于一个基准点生成其余顶点
+    :param existing_obstacles: 已存在的障碍物列表
+    :param border: 环境边界
+    :param max_obstacles: 最大障碍物数量
+    :return: 矩形障碍物列表
+    """
+    obstacles = []
+    while len(obstacles) < max_obstacles:
+        # 随机选择基准点
+        base_point = {
+            "x": random.randint(0, ENVIRONMENT_SIZE - MAX_OBSTACLE_SIZE),
+            "y": random.randint(0, ENVIRONMENT_SIZE - MAX_OBSTACLE_SIZE),
+        }
+
+        # 随机生成矩形的宽度和高度
+        width = random.randint(MIN_OBSTACLE_SIZE, MAX_OBSTACLE_SIZE)
+        height = random.randint(MIN_OBSTACLE_SIZE, MAX_OBSTACLE_SIZE)
+
+        # 依据基准点生成矩形的其余顶点
+        obstacle = [
+            {"x": base_point["x"], "y": base_point["y"]},  # 左上角
+            {"x": base_point["x"] + width, "y": base_point["y"]},  # 右上角
+            {"x": base_point["x"] + width, "y": base_point["y"] + height},  # 右下角
+            {"x": base_point["x"], "y": base_point["y"] + height},  # 左下角
+        ]
+
+        # 确保顶点不会超出环境边界
+        for v in obstacle:
+            v["x"] = min(max(0, v["x"]), ENVIRONMENT_SIZE)
+            v["y"] = min(max(0, v["y"]), ENVIRONMENT_SIZE)
+
+        # 检查障碍物是否与现有障碍物重叠或超出边界
+        overlap = False
+        for o in existing_obstacles:
+            if any(is_point_in_polygon(v, o) for v in obstacle):
+                overlap = True
+                break
+
+        if not overlap and all(is_point_in_polygon(v, border) for v in obstacle):
+            obstacles.append(obstacle)
+
+    return obstacles
+
+
 # 检查点是否在多边形内
 def is_point_in_polygon(point, polygon):
     """
@@ -167,10 +234,14 @@ def generate_user_position(border, obstacles):
 def generate_environment():
     global border_phys, border_virt, obstacles_phys, obstacles_virt, poi, user_phys, user_virt
 
-    border_phys = generate_border()
-    border_virt = generate_border()
-    obstacles_phys = generate_obstacles_centered([], border_phys, MAX_OBSTACLES)
-    obstacles_virt = generate_obstacles_centered([], border_virt, MAX_OBSTACLES)
+    # border_phys = generate_border()
+    # border_virt = generate_border()
+    # obstacles_phys = generate_obstacles_centered([], border_phys, MAX_OBSTACLES)
+    # obstacles_virt = generate_obstacles_centered([], border_virt, MAX_OBSTACLES)
+    border_phys = generate_rectangular_border()
+    border_virt = generate_rectangular_border()
+    obstacles_phys = generate_rectangular_obstacles([], border_phys, MAX_OBSTACLES)
+    obstacles_virt = generate_rectangular_obstacles([], border_virt, MAX_OBSTACLES)
     user_phys = generate_user_position(border_phys, obstacles_phys)
     user_virt = generate_user_position(border_virt, obstacles_virt)
     poi.append({"x": user_virt["x"], "y": user_virt["y"]})
