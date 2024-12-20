@@ -6,11 +6,11 @@ import random
 ENVIRONMENT_SIZE = 60
 
 # 定义最大障碍物数量
-MAX_OBSTACLES = 12
+MAX_OBSTACLES = 40
 
 # 定义最小和最大障碍物尺寸
 MIN_OBSTACLE_SIZE = 2
-MAX_OBSTACLE_SIZE = 6
+MAX_OBSTACLE_SIZE = 8
 
 border_phys = []
 border_virt = []
@@ -44,18 +44,85 @@ def generate_rectangular_border():
     生成一个矩形边界
     :return: 矩形的顶点列表，顺时针排序
     """
-    x1, y1 = random.randint(0, ENVIRONMENT_SIZE // 2), random.randint(
-        0, ENVIRONMENT_SIZE // 2
-    )
-    x2, y2 = random.randint(ENVIRONMENT_SIZE // 2, ENVIRONMENT_SIZE), random.randint(
-        ENVIRONMENT_SIZE // 2, ENVIRONMENT_SIZE
-    )
+    # x1, y1 = random.randint(0, ENVIRONMENT_SIZE // 2), random.randint(
+    #     0, ENVIRONMENT_SIZE // 2
+    # )
+    # x2, y2 = random.randint(ENVIRONMENT_SIZE // 2, ENVIRONMENT_SIZE), random.randint(
+    #     ENVIRONMENT_SIZE // 2, ENVIRONMENT_SIZE
+    # )
+    x1, y1 = 0, 0
+    x2, y2 = ENVIRONMENT_SIZE, ENVIRONMENT_SIZE
     return [
         {"x": x1, "y": y1},  # 左上角
         {"x": x2, "y": y1},  # 右上角
         {"x": x2, "y": y2},  # 右下角
         {"x": x1, "y": y2},  # 左下角
     ]
+
+
+# 生成满足 x 和 y 轴对称的矩形障碍物
+def generate_symmetric_rectangular_obstacles(existing_obstacles, border, max_obstacles):
+    """
+    生成满足 x 和 y 轴对称的矩形障碍物
+    :param existing_obstacles: 已存在的障碍物列表
+    :param border: 环境边界
+    :param max_obstacles: 最大障碍物数量
+    :return: 对称矩形障碍物列表
+    """
+    obstacles = []
+    while len(obstacles) < max_obstacles:
+        # 随机选择一个基准点，位于第一象限
+        base_point = {
+            "x": random.randint(0, ENVIRONMENT_SIZE // 2 - MAX_OBSTACLE_SIZE),
+            "y": random.randint(0, ENVIRONMENT_SIZE // 2 - MAX_OBSTACLE_SIZE),
+        }
+
+        # 随机生成矩形的宽度和高度
+        width = random.randint(MIN_OBSTACLE_SIZE, MAX_OBSTACLE_SIZE)
+        height = random.randint(MIN_OBSTACLE_SIZE, MAX_OBSTACLE_SIZE)
+
+        # 依据基准点生成矩形的顶点（第一象限）
+        rect_1 = [
+            {"x": base_point["x"], "y": base_point["y"]},  # 左上角
+            {"x": base_point["x"] + width, "y": base_point["y"]},  # 右上角
+            {"x": base_point["x"] + width, "y": base_point["y"] + height},  # 右下角
+            {"x": base_point["x"], "y": base_point["y"] + height},  # 左下角
+        ]
+
+        # 生成对称的矩形
+        rect_2 = [
+            {"x": ENVIRONMENT_SIZE - v["x"], "y": v["y"]} for v in rect_1
+        ]  # 第二象限
+        rect_3 = [
+            {"x": v["x"], "y": ENVIRONMENT_SIZE - v["y"]} for v in rect_1
+        ]  # 第四象限
+        rect_4 = [
+            {"x": ENVIRONMENT_SIZE - v["x"], "y": ENVIRONMENT_SIZE - v["y"]}
+            for v in rect_1
+        ]  # 第三象限
+
+        # 合并所有象限的矩形顶点
+        mirrored_obstacles = rect_1 + rect_2 + rect_3 + rect_4
+
+        # 确保顶点在边界内
+        for v in mirrored_obstacles:
+            v["x"] = min(max(0, v["x"]), ENVIRONMENT_SIZE)
+            v["y"] = min(max(0, v["y"]), ENVIRONMENT_SIZE)
+
+        # 检查是否与现有障碍物重叠
+        overlap = False
+        for o in existing_obstacles:
+            if any(is_point_in_polygon(v, o) for v in mirrored_obstacles):
+                overlap = True
+                break
+
+        # 确保障碍物完全在边界内并且没有重叠
+        if not overlap and all(
+            is_point_in_polygon(v, border) for v in mirrored_obstacles
+        ):
+            obstacles.extend([rect_1, rect_2, rect_3, rect_4])  # 更新已有障碍物
+
+    return obstacles
 
 
 # 生成矩形障碍物
@@ -239,11 +306,20 @@ def generate_environment():
     # obstacles_phys = generate_obstacles_centered([], border_phys, MAX_OBSTACLES)
     # obstacles_virt = generate_obstacles_centered([], border_virt, MAX_OBSTACLES)
     border_phys = generate_rectangular_border()
-    border_virt = generate_rectangular_border()
-    obstacles_phys = generate_rectangular_obstacles([], border_phys, MAX_OBSTACLES)
-    obstacles_virt = generate_rectangular_obstacles([], border_virt, MAX_OBSTACLES)
+    # border_virt = generate_rectangular_border()
+    border_virt = border_phys
+    # obstacles_phys = generate_rectangular_obstacles([], border_phys, MAX_OBSTACLES)
+    # obstacles_virt = generate_rectangular_obstacles([], border_virt, MAX_OBSTACLES)
+    obstacles_phys = generate_symmetric_rectangular_obstacles(
+        [], border_phys, MAX_OBSTACLES
+    )
+    obstacles_virt = obstacles_phys
+    # obstacles_virt = generate_symmetric_rectangular_obstacles(
+    #     [], border_virt, MAX_OBSTACLES
+    # )
     user_phys = generate_user_position(border_phys, obstacles_phys)
-    user_virt = generate_user_position(border_virt, obstacles_virt)
+    user_virt = user_phys
+    # user_virt = generate_user_position(border_virt, obstacles_virt)
     poi.append({"x": user_virt["x"], "y": user_virt["y"]})
 
     environment = {
@@ -251,7 +327,7 @@ def generate_environment():
         "border_virt": border_virt,
         "obstacles_phys": obstacles_phys,
         "obstacles_virt": obstacles_virt,
-        "poi": poi,
+        "poi": [],
         "initial_user_phys": user_phys,
         "initial_user_virt": user_virt,
         "walk_speed": 10,

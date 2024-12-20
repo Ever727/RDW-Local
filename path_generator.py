@@ -112,6 +112,36 @@ def process_file(base_path, file_path):
         total_distance = 0
         recorded_points = [{"x": current_position["x"], "y": current_position["y"]}]
 
+        # 统一虚拟和物理点
+        is_initial = False
+        while not is_initial:
+            # 随机前进 2m ~ 6m
+            step_distance = random.uniform(2, 6)
+            angle = adjust_angle()
+            new_position = move_along_angle(
+                current_position["x"], current_position["y"], angle, step_distance
+            )
+
+            # 检查是否碰到边界
+            if is_illegal_position(new_position, border, obstacles) or is_intersect(
+                current_position, new_position, obstacles
+            ):
+                continue
+
+            # 初始化点
+            current_position["angle"] = angle
+            data["initial_user_virt"] = current_position
+
+            # 如果不需要统一物理和虚拟点，则注释掉下面一行
+            data["initial_user_phys"] = current_position
+
+            # 添加新点
+            current_position = new_position
+            recorded_points.append(current_position)
+            angle = adjust_angle()
+            total_distance += step_distance
+            is_initial = True
+
         # 开始移动
         while total_distance < 400:
             # 随机前进 2m ~ 6m
