@@ -45,7 +45,7 @@ try:
 
     # 6. 点击开始按钮
     start_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//button[text()='Start']"))
+        EC.element_to_be_clickable((By.XPATH, "//button[text()='Simulate']"))
     )
     start_button.click()
     print("成功点击 simulate 按钮")

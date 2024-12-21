@@ -126,6 +126,8 @@ async def user_loop(websocket, path):
                             "reset": True,
                         }
                     )
+                    message_ = json.loads(message)
+                    print(message_)
                 elif is_universal:
                     user, has_reset = update_user(
                         physical_user,
@@ -169,12 +171,14 @@ async def user_loop(websocket, path):
                     )
 
             n_time = time.time()
+            # print(message)
             await websocket.send(message)
             calc_time += time.time() - n_time
             nn += 1
 
         elif data["type"] == "end":
             message = json.dumps({"type": "end"})
+            # print(message)
             await websocket.send(message)
             all_time = time.time() - r_time
             print(

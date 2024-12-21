@@ -1,5 +1,5 @@
 nums=25
-algorithms=("APF" "S2C" "S2O" "ARC" "RL")  # 定义算法列表
+algorithms=("S2C" "S2O" "APF" "ARC" "RL" "NON")  # 定义算法列表
 
 # Function to handle cleanup on Ctrl+C
 cleanup() {
@@ -31,7 +31,7 @@ check_end_condition() {
 }
 
 # 遍历 environment 从 2 到 10
-for environment in {1..2}; do
+for environment in {8..9}; do
   echo "正在测试环境 $environment"
   
   # 遍历 algorithms
@@ -70,7 +70,7 @@ for environment in {1..2}; do
       sleep 0.5
 
       # 启动 firefox.py
-      bash -c "python firefox.py 'test_set/env_${environment}/base.json'" &
+      bash -c "python firefox.py 'test_set/env_${environment}/${times}.json'" &
       python_pid=$!
       echo "浏览器进程 PID: $python_pid"
 
@@ -96,6 +96,10 @@ for environment in {1..2}; do
       echo "========== 第 $((times - 1)) 次执行完成 (环境: $environment, 算法: $algorithm) =========="
     done
   done
+  echo "绘制柱状图和箱线图"
+  python draw_reset_bar.py "logs/env_${environment}/"
+  python draw_reset_box.py "logs/env_${environment}/"
+
 done
 
 echo "所有环境和算法的任务执行完成！"

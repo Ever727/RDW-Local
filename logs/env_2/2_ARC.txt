@@ -97,10 +97,11 @@ phys_distance_left: 253.08989754173396, virt_distance_left: 114.08477226563576
 Alignment: 888.3703359957437, Trans gain: 0.86, Rota gain: 0.9007148980566118, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 787.2971034767559, 'user_y': 573.6859959309776, 'user_direction': 1.2306856241800062}, 'virtual': {'user_x': 1262.2425347056433, 'user_y': 388.13060262654636, 'user_direction': -2.65359866277129}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.314004069022417, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670941.3736267, Last reset time: 0
+Current time: 1734702078.8547704, Last reset time: 0
+{'type': 'running', 'user_x': 787.2971034767559, 'user_y': 573.6859959309776, 'user_direction': 5.628915339205717, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 787.2971034767559, 'user_y': 573.6859959309776, 'user_direction': 5.628915339205717}, 'virtual': {'user_x': 1255.176333405288, 'user_y': 384.3797628295334, 'user_direction': -2.6535986627712904}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.314004069022417, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670941.3863018, Last reset time: 1734670941.3736267
+Current time: 1734702078.8647554, Last reset time: 1734702078.8547704
 phys_distance_front: 942.6630397858365, virt_distance_front: 819.8265639297953, cur_rota_alignment: 315.1990444153402
 phys_distance_right: 308.93913065324756, virt_distance_right: 435.1755592473176
 phys_distance_left: 86.59403435049472, virt_distance_left: 152.72017431572363
@@ -377,38 +378,39 @@ phys_distance_left: 1501.656010747694, virt_distance_left: 461.37043856262386
 Alignment: 2115.283542612082, Trans gain: 0.86, Rota gain: 0.9779345530569217, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 907.7591508921117, 'user_y': 577.1105744811935, 'user_direction': 1.4354894873931754}, 'virtual': {'user_x': 1184.821082276338, 'user_y': 238.63621915004848, 'user_direction': -1.009934017927494}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.889425518806547, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670941.9280388, Last reset time: 1734670941.3736267
+Current time: 1734702079.3260305, Last reset time: 1734702078.8547704
+{'type': 'running', 'user_x': 907.7591508921117, 'user_y': 577.1105744811935, 'user_direction': 6.147878467777865, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 907.7591508921117, 'user_y': 577.1105744811935, 'user_direction': 6.147878467777865}, 'virtual': {'user_x': 1189.076415043832, 'user_y': 231.86184515403278, 'user_direction': -1.0099340179274947}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.889425518806547, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670941.9398348, Last reset time: 1734670941.9280388
+Current time: 1734702079.3358407, Last reset time: 1734702079.3260305
 phys_distance_front: 193.04809090372748, virt_distance_front: 273.8105044574164, cur_rota_alignment: 601.6323698120325
 phys_distance_right: 403.6897293957152, virt_distance_right: 29.35492839085975
 phys_distance_left: 582.4340291092968, virt_distance_left: 435.8988738558087
 Alignment: 601.6323698120325, Trans gain: 0.86, Rota gain: 1.0106927339248064, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 916.9331190630622, 'user_y': 575.5705844745153, 'user_direction': 6.11687071583988}, 'virtual': {'user_x': 1193.3317478113258, 'user_y': 225.08747115801708, 'user_direction': -1.0099340179274954}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 24.42941552548473, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670941.9490006, Last reset time: 1734670941.9280388
+Current time: 1734702079.3461788, Last reset time: 1734702079.3260305
 phys_distance_front: 405.5965927961799, virt_distance_front: 265.81050445741624, cur_rota_alignment: 694.2493250409243
 phys_distance_right: 405.59659279617983, virt_distance_right: 11.59393453304092
 phys_distance_left: 583.6236699414231, virt_distance_left: 423.16309150240147
 Alignment: 694.2493250409243, Trans gain: 1.26, Rota gain: 0.9681061421842057, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 923.1710701714836, 'user_y': 574.3872048930847, 'user_direction': 6.095706694675859}, 'virtual': {'user_x': 1197.5870805788197, 'user_y': 218.31309716200138, 'user_direction': -1.0099340179274963}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 25.612795106915314, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670941.9607267, Last reset time: 1734670941.9280388
+Current time: 1734702079.3602924, Last reset time: 1734702079.3260305
 phys_distance_front: 407.1340886679784, virt_distance_front: 257.8105044574162, cur_rota_alignment: 1357.340436145169
 phys_distance_right: 386.14194296140585, virt_distance_right: 1419.9545760282736
 phys_distance_left: 584.6315280167333, virt_distance_left: 410.4273091489942
 Alignment: 1357.340436145169, Trans gain: 1.26, Rota gain: 0.93084287441118, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 929.4326674945133, 'user_y': 573.3361006028123, 'user_direction': 6.11687071583988}, 'virtual': {'user_x': 1201.8424133463134, 'user_y': 211.5387231659857, 'user_direction': -1.0099340179274972}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.66389939718772, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670941.9710171, Last reset time: 1734670941.9280388
+Current time: 1734702079.3691618, Last reset time: 1734702079.3260305
 phys_distance_front: 405.5965927961799, virt_distance_front: 249.81050445741602, cur_rota_alignment: 1355.1561125619796
 phys_distance_right: 399.2257358339321, virt_distance_right: 1414.9293645238636
 phys_distance_left: 581.3579223288712, virt_distance_left: 397.69152679558687
 Alignment: 1355.1561125619796, Trans gain: 1.26, Rota gain: 0.9694875151097825, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 935.7151064685147, 'user_y': 572.4177423923353, 'user_direction': 6.138034737003902}, 'virtual': {'user_x': 1206.0977461138073, 'user_y': 204.76434916997, 'user_direction': -1.0099340179274963}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.5822576076647, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670941.9808686, Last reset time: 1734670941.9280388
+Current time: 1734702079.3777175, Last reset time: 1734702079.3260305
 phys_distance_front: 287.81100011369153, virt_distance_front: 241.81050445741622, cur_rota_alignment: 1245.1990369039208
 phys_distance_right: 404.2510480710604, virt_distance_right: 1409.9041530194547
 phys_distance_left: 578.5011807414295, virt_distance_left: 384.95574444217846
@@ -1939,136 +1941,137 @@ phys_distance_left: 394.3526137049578, virt_distance_left: 1432.8162399610087
 Alignment: 1579.9334873725159, Trans gain: 1.26, Rota gain: 0.8192037297171172, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 2.753220645044335}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -1.9610982588965589}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.6411326, Last reset time: 1734670941.9280388
+Current time: 1734702081.9565926, Last reset time: 1734702079.3260305
+{'type': 'running', 'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 0.8682650528904592, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 0.8682650528904592}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.0610982588965587}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.6599183, Last reset time: 1734670944.6411326
+Current time: 1734702081.9670599, Last reset time: 1734702081.9565926
 phys_distance_front: 138.35521465521055, virt_distance_front: 133.7207357175505, cur_rota_alignment: 921.1956080442949
 phys_distance_right: 524.1028017344785, virt_distance_right: 250.5184295474625
 phys_distance_left: 913.2214485132077, virt_distance_left: 1556.1982054328266
 Alignment: 921.1956080442949, Trans gain: 1.0346578929048758, Rota gain: 0.8718032635024776, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 0.9829698311201817}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.161098258896559}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.6693428, Last reset time: 1734670944.6411326
+Current time: 1734702081.976911, Last reset time: 1734702081.9565926
 phys_distance_front: 416.6524820699698, virt_distance_front: 141.9969605008284, cur_rota_alignment: 1543.1808828023197
 phys_distance_right: 480.6837427218187, virt_distance_right: 211.937968687132
 phys_distance_left: 1064.062124553518, virt_distance_left: 64.28253735502628
 Alignment: 1543.1808828023197, Trans gain: 1.26, Rota gain: 0.8465778555646679, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 1.10109245781386}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.261098258896559}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.6787567, Last reset time: 1734670944.6411326
+Current time: 1734702081.9852269, Last reset time: 1734702081.9565926
 phys_distance_front: 448.5801728211061, virt_distance_front: 152.9947637992745, cur_rota_alignment: 594.0894837406538
 phys_distance_right: 448.5801728211058, virt_distance_right: 185.25871056308884
 phys_distance_left: 210.16789239470396, virt_distance_left: 245.35050485550929
 Alignment: 594.0894837406538, Trans gain: 1.26, Rota gain: 0.8957556236190845, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 1.2127300488746608}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.361098258896559}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.6881268, Last reset time: 1734670944.6411326
+Current time: 1734702081.9945016, Last reset time: 1734702081.9565926
 phys_distance_front: 221.56692717480126, virt_distance_front: 167.65495689173716, cur_rota_alignment: 320.33607733997223
 phys_distance_right: 425.3700853329832, virt_distance_right: 166.01868541139055
 phys_distance_left: 427.0874792963932, virt_distance_left: 420.01477216107776
 Alignment: 320.33607733997223, Trans gain: 1.26, Rota gain: 0.9387861706666989, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 1.3192505783888344}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.461098258896559}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.6971698, Last reset time: 1734670944.6411326
+Current time: 1734702082.0028596, Last reset time: 1734702081.9565926
 phys_distance_front: 1868.7316088881391, virt_distance_front: 187.4943330613943, cur_rota_alignment: 2029.9466989343796
 phys_distance_right: 398.8525838600587, virt_distance_right: 151.77279986616276
 phys_distance_left: 412.99751071545876, virt_distance_left: 514.6271498291976
 Alignment: 2029.9466989343796, Trans gain: 1.26, Rota gain: 0.9051878993333615, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 1.4297248788889256}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.561098258896559}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.7070565, Last reset time: 1734670944.6411326
+Current time: 1734702082.0123193, Last reset time: 1734702081.9565926
 phys_distance_front: 1828.0807678572778, virt_distance_front: 215.09690916775546, cur_rota_alignment: 2046.0093963663476
 phys_distance_right: 358.6102307548927, virt_distance_right: 141.07674751947
 phys_distance_left: 37.01589282994028, virt_distance_left: 252.50794727134294
 Alignment: 2046.0093963663476, Trans gain: 1.26, Rota gain: 0.8757894119166914, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 1.5439075792496744}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.6610982588965593}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.7180607, Last reset time: 1734670944.6411326
+Current time: 1734702082.020583, Last reset time: 1734702081.9565926
 phys_distance_front: 1810.574945239084, virt_distance_front: 255.22001087502218, cur_rota_alignment: 2819.9348075579337
 phys_distance_right: 56.067482056503806, virt_distance_right: 133.03072515920005
 phys_distance_left: 1375.5943814184807, virt_distance_left: 187.97775132730482
 Alignment: 2819.9348075579337, Trans gain: 1.26, Rota gain: 0.850065735427105, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 1.6615455404477648}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.7610982588965594}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.7274365, Last reset time: 1734670944.6411326
+Current time: 1734702082.0298617, Last reset time: 1734702081.9565926
 phys_distance_front: 136.8230275052196, virt_distance_front: 317.64590162260026, cur_rota_alignment: 1112.0649456210797
 phys_distance_right: 1029.1376520755084, virt_distance_right: 127.0539455172603
 phys_distance_left: 401.6527547924757, virt_distance_left: 430.8111197379267
 Alignment: 1112.0649456210797, Trans gain: 0.86, Rota gain: 0.8988075184987169, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 1.7728040668194962}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.8610982588965594}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.7368822, Last reset time: 1734670944.6411326
+Current time: 1734702082.0380332, Last reset time: 1734702081.9565926
 phys_distance_front: 294.3096604240737, virt_distance_front: 426.1347049224404, cur_rota_alignment: 160.55705749316172
 phys_distance_right: 98.7941319121064, virt_distance_right: 122.76500943293749
 phys_distance_left: 408.30253546410955, virt_distance_left: 403.54139999014564
 Alignment: 160.55705749316172, Trans gain: 0.86, Rota gain: 0.9414565786863773, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 1.8790224546494807}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -2.9610982588965595}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.74636, Last reset time: 1734670944.6411326
+Current time: 1734702082.0474231, Last reset time: 1734702081.9565926
 phys_distance_front: 348.1063648767549, virt_distance_front: 657.140419168472, cur_rota_alignment: 2508.8353062216866
 phys_distance_right: 419.78302816580714, virt_distance_right: 119.91520749666135
 phys_distance_left: 419.783028165807, virt_distance_left: 2319.7164594266305
 Alignment: 2508.8353062216866, Trans gain: 0.86, Rota gain: 0.9075245063505801, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 1.9892123165212323}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': -3.0610982588965596}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.7559004, Last reset time: 1734670944.6411326
+Current time: 1734702082.055966, Last reset time: 1734702081.9565926
 phys_distance_front: 159.36536103876125, virt_distance_front: 401.299377253412, cur_rota_alignment: 2413.0294757044285
 phys_distance_right: 437.76431121872463, virt_distance_right: 118.35040201534723
 phys_distance_left: 437.7643112187247, virt_distance_left: 2289.445861505125
 Alignment: 2413.0294757044285, Trans gain: 0.86, Rota gain: 0.9490839430567577, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 2.0945770745403443}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': 3.1220870482830265}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.7650821, Last reset time: 1734670944.6411326
+Current time: 1734702082.065527, Last reset time: 1734702081.9565926
 phys_distance_front: 420.95290747363333, virt_distance_front: 400.07610579257545, cur_rota_alignment: 456.3799843004806
 phys_distance_right: 458.13574379299416, virt_distance_right: 117.98963726620961
 phys_distance_left: 386.41223290266925, virt_distance_left: 291.05515681003106
 Alignment: 456.3799843004806, Trans gain: 1.0521820758070508, Rota gain: 0.985448450174663, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 2.1960537169586014}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': 3.0220870482830264}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.7745352, Last reset time: 1734670944.6411326
+Current time: 1734702082.0738766, Last reset time: 1734702081.9565926
 phys_distance_front: 12.156530743987888, virt_distance_front: 402.8734142144474, cur_rota_alignment: 674.4858289758795
 phys_distance_right: 237.44371872071162, virt_distance_right: 118.81461381751983
 phys_distance_left: 237.73357361221912, virt_distance_left: 402.8734142144474
 Alignment: 674.4858289758795, Trans gain: 0.86, Rota gain: 0.9460173939028301, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 2.3017600186022174}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': 2.9220870482830263}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.7838542, Last reset time: 1734670944.6411326
+Current time: 1734702082.083862, Last reset time: 1734702081.9565926
 phys_distance_front: 513.2723278314202, virt_distance_front: 298.44979560164023, cur_rota_alignment: 590.7193718350055
 phys_distance_right: 44.57477646014713, virt_distance_right: 120.86737825333154
 phys_distance_left: 110.22963513944005, virt_distance_left: 409.8338729514812
 Alignment: 590.7193718350055, Trans gain: 1.26, Rota gain: 0.9827652196649764, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 2.403513721316778}, 'virtual': {'user_x': 1372.863617384351, 'user_y': 117.96719229953996, 'user_direction': 2.820321320751614}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.793973, Last reset time: 1734670944.6411326
+Current time: 1734702082.0948663, Last reset time: 1734702081.9565926
 phys_distance_front: 540.7140454338007, virt_distance_front: 1446.8943543992223, cur_rota_alignment: 1635.1014196099616
 phys_distance_right: 797.6607413339037, virt_distance_right: 124.32849292614476
 phys_distance_left: 57.091986985404986, virt_distance_left: 1.5031247486238943
 Alignment: 1635.1014196099616, Trans gain: 0.86, Rota gain: 0.9436695672068544, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1024.902869253058, 'user_y': 590.0795424642338, 'user_direction': 2.509483017641537}, 'virtual': {'user_x': 1365.2729395261636, 'user_y': 120.49337710141424, 'user_direction': 2.820321320751614}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.806125694584146, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.804129, Last reset time: 1734670944.6411326
+Current time: 1734702082.1036747, Last reset time: 1734702081.9565926
 phys_distance_front: 495.7963717546557, virt_distance_front: 1438.8943543992223, cur_rota_alignment: 1827.2505984602133
 phys_distance_right: 731.398240501036, virt_distance_right: 126.9909005256446
 phys_distance_left: 307.94920111214566, virt_distance_left: 28.20392527189036
 Alignment: 1827.2505984602133, Trans gain: 0.86, Rota gain: 0.9094608713059975, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1017.5719197373891, 'user_y': 595.8058362412763, 'user_direction': 2.4784752657035525}, 'virtual': {'user_x': 1357.682261667976, 'user_y': 123.01956190328852, 'user_direction': 2.8203213207516145}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 18.065529964333585, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.8141687, Last reset time: 1734670944.6411326
+Current time: 1734702082.1174853, Last reset time: 1734702081.9565926
 phys_distance_front: 507.56456917417586, virt_distance_front: 1430.8943543992223, cur_rota_alignment: 1745.3945561619948
 phys_distance_right: 756.0248314581575, virt_distance_right: 129.65330812514446
 phys_distance_left: 250.59797339909602, virt_distance_left: 54.90472579516042
 Alignment: 1745.3945561619948, Trans gain: 0.86, Rota gain: 0.9507782623927479, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1010.422025267508, 'user_y': 601.7566572175658, 'user_direction': 2.447467513765568}, 'virtual': {'user_x': 1350.0915838097885, 'user_y': 125.5457467051628, 'user_direction': 2.8203213207516145}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 10.422025267508047, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.824251, Last reset time: 1734670944.6411326
+Current time: 1734702082.1292393, Last reset time: 1734702081.9565926
 phys_distance_front: 520.4175038152739, virt_distance_front: 1422.8943543992225, cur_rota_alignment: 1667.1864186083756
 phys_distance_right: 782.9117436334725, virt_distance_right: 132.31571572464432
 phys_distance_left: 195.71906643402454, virt_distance_left: 81.60552631842596
 Alignment: 1667.1864186083756, Trans gain: 0.86, Rota gain: 0.9869309795936544, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1003.4600597780241, 'user_y': 607.9262842521211, 'user_direction': 2.4164597618275834}, 'virtual': {'user_x': 1342.500905951601, 'user_y': 128.07193150703708, 'user_direction': 2.820321320751615}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 3.4600597780240605, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.834331, Last reset time: 1734670944.6411326
+Current time: 1734702082.138114, Last reset time: 1734702081.9565926
 phys_distance_front: 534.4654807867927, virt_distance_front: 1414.8943543992216, cur_rota_alignment: 1044.3788397111273
 phys_distance_right: 5.373868685762621, virt_distance_right: 134.97812332414424
 phys_distance_left: 142.65203830201276, virt_distance_left: 108.30632684169595
@@ -2076,21 +2079,21 @@ Alignment: 1044.3788397111273, Trans gain: 0.86, Rota gain: 1.0185646071444476, 
 {'type': 'running', 'physical': {'user_x': 1003.4600597780241, 'user_y': 607.9262842521211, 'user_direction': 2.4164597618275834}, 'virtual': {'user_x': 1334.9102280934135, 'user_y': 130.59811630891136, 'user_direction': 2.8203213207516153}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': True}
 {'type': 'running', 'physical': {'user_x': 1003.4600597780241, 'user_y': 607.9262842521211, 'user_direction': 6.186370946135336}, 'virtual': {'user_x': 1327.319550235226, 'user_y': 133.1243011107856, 'user_direction': 2.820321320751616}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 3.4600597780240605, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.8551822, Last reset time: 1734670944.6411326
+Current time: 1734702082.1574981, Last reset time: 1734702081.9565926
 phys_distance_front: 1403.1104973829301, virt_distance_front: 1398.8943543992218, cur_rota_alignment: 2113.4969960084327
 phys_distance_right: 1800.5052130841407, virt_distance_right: 140.302938523144
 phys_distance_left: 610.7865063519561, virt_distance_left: 161.70792788822823
 Alignment: 2113.4969960084327, Trans gain: 1.0030139109293346, Rota gain: 0.9749940312513916, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1011.3753698675627, 'user_y': 606.9445395461266, 'user_direction': 6.159784408923744}, 'virtual': {'user_x': 1319.7288723770384, 'user_y': 135.65048591265986, 'user_direction': 2.8203213207516162}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 11.375369867562654, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.8645718, Last reset time: 1734670944.6411326
+Current time: 1734702082.1672022, Last reset time: 1734702081.9565926
 phys_distance_front: 1399.2649681814448, virt_distance_front: 1390.8943543992211, cur_rota_alignment: 2095.386542394707
 phys_distance_right: 1806.7947502704662, virt_distance_right: 142.9653461226439
 phys_distance_left: 611.5952528761604, virt_distance_left: 188.40872841149965
 Alignment: 2095.386542394707, Trans gain: 1.0060181521017384, Rota gain: 1.0081197773449677, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1019.2383279176516, 'user_y': 605.7569092431337, 'user_direction': 6.13327726627333}, 'virtual': {'user_x': 1312.138194518851, 'user_y': 138.1766707145341, 'user_direction': 2.8203213207516162}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 19.238327917651645, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670944.8747442, Last reset time: 1734670944.6411326
+Current time: 1734702082.175926, Last reset time: 1734702081.9565926
 phys_distance_front: 18.714344519173434, virt_distance_front: 1382.8943543992211, cur_rota_alignment: 3440.325376522582
 phys_distance_right: 1814.5940975358728, virt_distance_right: 145.62775372214372
 phys_distance_left: 612.6276409906568, virt_distance_left: 205.44861816185193
@@ -4191,10 +4194,11 @@ phys_distance_left: 162.2088241301539, virt_distance_left: 539.084011970357
 Alignment: 2064.785717285008, Trans gain: 0.86, Rota gain: 1.0705458582965195, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1022.1882742866086, 'user_y': 787.5779222817055, 'user_direction': 3.564687744290679}, 'virtual': {'user_x': 849.3968591091814, 'user_y': 144.77906718942697, 'user_direction': 2.3106577951777694}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.18827428660859, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670948.4751158, Last reset time: 1734670944.6411326
+Current time: 1734702085.5192356, Last reset time: 1734702081.9565926
+{'type': 'running', 'user_x': 1022.1882742866086, 'user_y': 787.5779222817055, 'user_direction': 5.449643336444555, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1022.1882742866086, 'user_y': 787.5779222817055, 'user_direction': 5.449643336444555}, 'virtual': {'user_x': 844.0033742778638, 'user_y': 150.68756288413192, 'user_direction': 2.310657795177769}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.18827428660859, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670948.487045, Last reset time: 1734670948.4751158
+Current time: 1734702085.52927, Last reset time: 1734702085.5192356
 phys_distance_front: 1063.8385809296988, virt_distance_front: 1251.8857854233408, cur_rota_alignment: 611.8505687071865
 phys_distance_right: 57.60252089760702, virt_distance_right: 223.51050216610236
 phys_distance_left: 249.05545903214474, virt_distance_left: 506.9508419771938
@@ -4831,10 +4835,11 @@ phys_distance_left: 142.2730576867291, virt_distance_left: 1022.2536378187434
 Alignment: 1466.227626301456, Trans gain: 0.9228210077392144, Rota gain: 0.9390983373243157, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1027.2281973944146, 'user_y': 870.8249485994194, 'user_direction': 4.021556899428567}, 'virtual': {'user_x': 957.4082402967229, 'user_y': 203.18652404200387, 'user_direction': -1.92114737692206}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.228197394414565, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670949.5701253, Last reset time: 1734670948.4751158
+Current time: 1734702086.5570574, Last reset time: 1734702085.5192356
+{'type': 'running', 'user_x': 1027.2281973944146, 'user_y': 870.8249485994194, 'user_direction': 5.9065124915824425, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1027.2281973944146, 'user_y': 870.8249485994194, 'user_direction': 5.9065124915824425}, 'virtual': {'user_x': 954.6624198708807, 'user_y': 195.67250579681522, 'user_direction': -1.92114737692206}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.228197394414565, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670949.582851, Last reset time: 1734670949.5701253
+Current time: 1734702086.5669515, Last reset time: 1734702086.5570574
 phys_distance_front: 196.25573032306622, virt_distance_front: 208.3279538716662, cur_rota_alignment: 1298.8819203591752
 phys_distance_right: 1644.4623649264793, virt_distance_right: 570.095564750714
 phys_distance_left: 217.21879080987443, virt_distance_left: 4.775894175064645
@@ -6797,108 +6802,109 @@ phys_distance_left: 976.0519691518667, virt_distance_left: 1498.412155372715
 Alignment: 900.8245575186778, Trans gain: 0.9504491886022642, Rota gain: 0.8297331539000522, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 6.212610935431171}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.001451338121035}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670952.940038, Last reset time: 1734670949.5701253
+Current time: 1734702089.6079993, Last reset time: 1734702086.5570574
+{'type': 'running', 'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 3.3851775472003567, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 3.3851775472003567}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.101451338121035}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670952.9517143, Last reset time: 1734670952.940038
+Current time: 1734702089.6180546, Last reset time: 1734702089.6079993
 phys_distance_front: 412.1673463742483, virt_distance_front: 309.2798979083059, cur_rota_alignment: 1524.8048561877345
 phys_distance_right: 288.8299090440063, virt_distance_right: 423.7612346169631
 phys_distance_left: 1472.7618232755124, virt_distance_left: 185.77574112667708
 Alignment: 1524.8048561877345, Trans gain: 1.26, Rota gain: 0.8097665096625457, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 3.5086699351995505}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.201451338121035}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670952.9616733, Last reset time: 1734670952.940038
+Current time: 1734702089.6278162, Last reset time: 1734702089.6079993
 phys_distance_front: 428.54988074268465, virt_distance_front: 171.74017350915517, cur_rota_alignment: 1459.1655836502277
 phys_distance_right: 334.5673822016157, virt_distance_right: 363.70081039293865
 phys_distance_left: 1531.3001121491395, virt_distance_left: 358.07766392376425
 Alignment: 1459.1655836502277, Trans gain: 1.26, Rota gain: 0.8635456959547275, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 3.6244715661594977}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.3014513381210353}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670952.9731777, Last reset time: 1734670952.940038
+Current time: 1734702089.6380746, Last reset time: 1734702089.6079993
 phys_distance_front: 326.25691114256284, virt_distance_front: 55.86182665626346, cur_rota_alignment: 715.5872369203873
 phys_distance_right: 370.1836874243594, virt_distance_right: 321.36425533823234
 phys_distance_left: 123.28053594163848, virt_distance_left: 519.6532562895994
 Alignment: 715.5872369203873, Trans gain: 1.26, Rota gain: 0.9106024839603866, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 3.7342889692101466}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.4014513381210354}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670952.9830356, Last reset time: 1734670952.940038
+Current time: 1734702089.647226, Last reset time: 1734702089.6079993
 phys_distance_front: 208.48514469860712, virt_distance_front: 1330.9758703984153, cur_rota_alignment: 1478.170563826954
 phys_distance_right: 55.99029223321576, virt_distance_right: 290.4559052515763
 phys_distance_left: 323.9636057949186, virt_distance_left: 445.177830903704
 Alignment: 1478.170563826954, Trans gain: 0.86, Rota gain: 0.8805271734653383, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 3.8478572985172903}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.5014513381210355}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670952.9931893, Last reset time: 1734670952.940038
+Current time: 1734702089.657346, Last reset time: 1734702089.6079993
 phys_distance_front: 74.9775518264404, virt_distance_front: 1225.3654381674182, cur_rota_alignment: 1425.8515569956917
 phys_distance_right: 316.80221244951406, virt_distance_right: 267.40877541256447
 phys_distance_left: 372.4628838165955, virt_distance_left: 146.39265019883103
 Alignment: 1425.8515569956917, Trans gain: 0.86, Rota gain: 0.925461276782171, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 3.955911522404107}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.6014513381210356}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.0032265, Last reset time: 1734670952.940038
+Current time: 1734702089.6664238, Last reset time: 1734702089.6079993
 phys_distance_front: 1334.7592578325414, virt_distance_front: 1145.8905384284715, cur_rota_alignment: 737.9647371514343
 phys_distance_right: 509.2184956402222, virt_distance_right: 250.06514472634893
 phys_distance_left: 394.52249685176054, virt_distance_left: 104.57983001826946
 Alignment: 737.9647371514343, Trans gain: 1.1648226537092221, Rota gain: 0.9647786171843997, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 4.059562244153972}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.7014513381210357}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.0131137, Last reset time: 1734670952.940038
+Current time: 1734702089.676446, Last reset time: 1734702089.6079993
 phys_distance_front: 1221.9932780156319, virt_distance_front: 1086.2896785119895, cur_rota_alignment: 257.6153144732747
 phys_distance_right: 347.59492915934715, virt_distance_right: 237.05858156782062
 phys_distance_left: 39.637810214013655, virt_distance_left: 28.262442835907912
 Alignment: 257.6153144732747, Trans gain: 1.1249239518592598, Rota gain: 0.9991812900363498, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 4.15964418223386}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.8014513381210358}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.0234122, Last reset time: 1734670952.940038
+Current time: 1734702089.685844, Last reset time: 1734702089.6079993
 phys_distance_front: 1140.5592012304446, virt_distance_front: 1042.4834503997379, cur_rota_alignment: 539.6112848065438
 phys_distance_right: 114.34550730959364, virt_distance_right: 227.49884579425444
 phys_distance_left: 95.92755869799791, virt_distance_left: 424.3097541891742
 Alignment: 539.6112848065438, Trans gain: 1.0940789523259096, Rota gain: 0.9580336287818061, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 4.264024651766183}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 2.901451338121036}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.033025, Last reset time: 1734670952.940038
+Current time: 1734702089.69545, Last reset time: 1734702089.6079993
 phys_distance_front: 1077.186676889289, virt_distance_front: 180.11052294781268, cur_rota_alignment: 1841.6278333284165
 phys_distance_right: 443.87364356695707, virt_distance_right: 220.8008946950601
 phys_distance_left: 1528.6243156629532, virt_distance_left: 2250.1032461779964
 Alignment: 1841.6278333284165, Trans gain: 1.26, Rota gain: 0.9220294251840804, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 4.372481060280516}, 'virtual': {'user_x': 982.7569977898338, 'user_y': 214.46487482145073, 'user_direction': 3.020777854887092}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.042985, Last reset time: 1734670952.940038
+Current time: 1734702089.7056024, Last reset time: 1734702089.6079993
 phys_distance_front: 1029.624272858348, virt_distance_front: 402.9371032551142, cur_rota_alignment: 1575.3762267917614
 phys_distance_right: 424.27472164658593, virt_distance_right: 216.0396385263151
 phys_distance_left: 1461.1290069361135, virt_distance_left: 2201.58298100437
 Alignment: 1575.3762267917614, Trans gain: 1.26, Rota gain: 0.9617757470360704, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1377.5310499438247, 'user_y': 970.7147000061053, 'user_direction': 4.476455401813013}, 'virtual': {'user_x': 974.8153116702164, 'user_y': 215.42904367464797, 'user_direction': 3.020777854887092}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.468950056175345, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.0525808, Last reset time: 1734670952.940038
+Current time: 1734702089.7145872, Last reset time: 1734702089.6079993
 phys_distance_front: 998.373088595885, virt_distance_front: 402.9371032551142, cur_rota_alignment: 1573.653175304244
 phys_distance_right: 411.39712362019685, virt_distance_right: 217.0108870382053
 phys_distance_left: 1416.7807791109979, virt_distance_left: 2200.61173249248
 Alignment: 1573.653175304244, Trans gain: 1.26, Rota gain: 0.9965537786565616, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1376.1778925745227, 'user_y': 964.5113632911828, 'user_direction': 4.497619422977034}, 'virtual': {'user_x': 966.873625550599, 'user_y': 216.3932125278452, 'user_direction': 3.020777854887092}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 23.82210742547727, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.0627768, Last reset time: 1734670952.940038
+Current time: 1734702089.7240732, Last reset time: 1734702089.6079993
 phys_distance_front: 987.1915636883995, virt_distance_front: 402.9371032551142, cur_rota_alignment: 1566.7803808949034
 phys_distance_right: 409.40588209135285, virt_distance_right: 217.9821355500956
 phys_distance_left: 1408.5383100602287, virt_distance_left: 2199.6404839805896
 Alignment: 1566.7803808949034, Trans gain: 1.26, Rota gain: 1.0269845563244913, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1374.9563159929671, 'user_y': 958.2807796973132, 'user_direction': 4.5187834441410555}, 'virtual': {'user_x': 958.9319394309815, 'user_y': 217.35738138104244, 'user_direction': 3.020777854887092}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 25.04368400703288, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.0751288, Last reset time: 1734670952.940038
+Current time: 1734702089.733063, Last reset time: 1734702089.6079993
 phys_distance_front: 976.5252835646232, virt_distance_front: 402.9371032551142, cur_rota_alignment: 1559.7857298685346
 phys_distance_right: 407.6155148903531, virt_distance_right: 218.95338406198584
 phys_distance_left: 1401.1338167380409, virt_distance_left: 2198.6692354686993
 Alignment: 1559.7857298685346, Trans gain: 1.26, Rota gain: 1.05361148678393, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1373.8668673421762, 'user_y': 952.0257398971127, 'user_direction': 4.539947465305077}, 'virtual': {'user_x': 950.9902533113641, 'user_y': 218.32155023423968, 'user_direction': 3.020777854887092}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.13313265782381, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.0846663, Last reset time: 1734670952.940038
+Current time: 1734702089.742723, Last reset time: 1734702089.6079993
 phys_distance_front: 966.358019363664, virt_distance_front: 402.9371032551142, cur_rota_alignment: 2121.9002053887853
 phys_distance_right: 406.0218033466616, virt_distance_right: 219.92463257387607
 phys_distance_left: 1394.5497575912477, virt_distance_left: 22.16763908379821
 Alignment: 2121.9002053887853, Trans gain: 1.26, Rota gain: 1.0056600509359388, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1372.6452907606206, 'user_y': 945.7951563032431, 'user_direction': 4.5187834441410555}, 'virtual': {'user_x': 943.0485671917467, 'user_y': 219.28571908743692, 'user_direction': 3.020777854887092}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.354709239379417, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.0946376, Last reset time: 1734670952.940038
+Current time: 1734702089.7514946, Last reset time: 1734702089.6079993
 phys_distance_front: 963.801949043371, virt_distance_front: 402.9371032551142, cur_rota_alignment: 2057.3298175297355
 phys_distance_right: 407.6155148903531, virt_distance_right: 220.89588108576635
 phys_distance_left: 1398.7787923880219, virt_distance_left: 89.03345445112991
@@ -7259,24 +7265,25 @@ phys_distance_left: 812.5035248681814, virt_distance_left: 260.78191115517967
 Alignment: 1233.7290904507379, Trans gain: 1.26, Rota gain: 0.8575486286572929, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1377.7826380866884, 'user_y': 800.4376063197517, 'user_direction': -0.18512730687872558}, 'virtual': {'user_x': 823.6061399627706, 'user_y': 163.6062941158548, 'user_direction': -0.8678109295572204}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.217361913311606, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.6850345, Last reset time: 1734670952.940038
+Current time: 1734702090.333022, Last reset time: 1734702089.6079993
+{'type': 'running', 'user_x': 1377.7826380866884, 'user_y': 800.4376063197517, 'user_direction': 2.0139875506341296, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1377.7826380866884, 'user_y': 800.4376063197517, 'user_direction': 2.0139875506341296}, 'virtual': {'user_x': 823.6061399627706, 'user_y': 163.6062941158548, 'user_direction': -0.6824444464273867}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.217361913311606, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.6960266, Last reset time: 1734670953.6850345
+Current time: 1734702090.3431137, Last reset time: 1734702090.333022
 phys_distance_front: 225.4874405482069, virt_distance_front: 259.40764377822734, cur_rota_alignment: 347.7288875287771
 phys_distance_right: 49.227327603222236, virt_distance_right: 133.08246597930707
 phys_distance_left: 440.77733963723915, virt_distance_left: 210.82379371456736
 Alignment: 347.7288875287771, Trans gain: 0.8692397697462628, Rota gain: 0.9053550500751313, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1377.7826380866884, 'user_y': 800.4376063197517, 'user_direction': 2.124441454869492}, 'virtual': {'user_x': 829.814406733166, 'user_y': 158.56075908896176, 'user_direction': -0.6824444464273867}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.217361913311606, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.7058287, Last reset time: 1734670953.6850345
+Current time: 1734702090.3529327, Last reset time: 1734702090.333022
 phys_distance_front: 20.840461059657372, virt_distance_front: 251.40764377822748, cur_rota_alignment: 635.7812323441842
 phys_distance_right: 372.8457783311229, virt_distance_right: 116.7371859581696
 phys_distance_left: 353.4275522310165, virt_distance_left: 204.32209497835566
 Alignment: 635.7812323441842, Trans gain: 0.86, Rota gain: 0.8759356688157398, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1373.1392225266973, 'user_y': 808.4981244891695, 'user_direction': 2.0934337029315073}, 'virtual': {'user_x': 836.0226735035615, 'user_y': 153.5152240620687, 'user_direction': -0.6824444464273869}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 26.860777473302733, Object: POLYGON ((1800 600, 1800 1000, 1400 1000, 1400 600, 1800 600))
-Current time: 1734670953.7154663, Last reset time: 1734670953.6850345
+Current time: 1734702090.3621204, Last reset time: 1734702090.333022
 phys_distance_front: 396.72958325178206, virt_distance_front: 243.40764377822742, cur_rota_alignment: 669.3776401786367
 phys_distance_right: 461.6241976447128, virt_distance_right: 100.39190593703184
 phys_distance_left: 352.6438052395452, virt_distance_left: 197.82039624214406
@@ -11105,10 +11112,11 @@ phys_distance_left: 75.70625924680847, virt_distance_left: 427.0849593334135
 Alignment: 798.185196281886, Trans gain: 0.86, Rota gain: 1.0359516930865176, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1015.6281658185708, 'user_y': 577.578115741067, 'user_direction': 2.666343273483977}, 'virtual': {'user_x': 484.2772046059494, 'user_y': 457.3611744332759, 'user_direction': 2.5997363011980186}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.330943279984535, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670960.245696, Last reset time: 1734670953.6850345
+Current time: 1734702096.3151288, Last reset time: 1734702090.333022
+{'type': 'running', 'user_x': 1015.6281658185708, 'user_y': 577.578115741067, 'user_direction': 4.865458130996832, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1015.6281658185708, 'user_y': 577.578115741067, 'user_direction': 4.865458130996832}, 'virtual': {'user_x': 477.4231823140807, 'user_y': 461.4869929487424, 'user_direction': 2.599736301198018}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.330943279984535, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670960.2572992, Last reset time: 1734670960.245696
+Current time: 1734702096.3250215, Last reset time: 1734702096.3151288
 phys_distance_front: 584.4111836296274, virt_distance_front: 557.247306161197, cur_rota_alignment: 680.1437050452723
 phys_distance_right: 404.73222076968307, virt_distance_right: 388.5223586968413
 phys_distance_left: 1027.643607569975, virt_distance_left: 390.8736420659749
@@ -11463,10 +11471,11 @@ phys_distance_left: 390.75870547323984, virt_distance_left: 399.54680259680606
 Alignment: 1679.186213583193, Trans gain: 0.86, Rota gain: 0.9475112496570129, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1015.0555758260946, 'user_y': 576.457227737222, 'user_direction': 1.6227088213047436}, 'virtual': {'user_x': 466.1496521808136, 'user_y': 458.1801737195493, 'user_direction': -0.4930234943629895}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.945169336976914, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670960.8326538, Last reset time: 1734670960.245696
+Current time: 1734702096.861129, Last reset time: 1734702096.3151288
+{'type': 'running', 'user_x': 1015.0555758260946, 'user_y': 576.457227737222, 'user_direction': 5.706779270971475, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1015.0555758260946, 'user_y': 576.457227737222, 'user_direction': 5.706779270971475}, 'virtual': {'user_x': 473.1968993258557, 'user_y': 454.39384202822913, 'user_direction': -0.49302349436299003}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.945169336976914, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670960.8436658, Last reset time: 1734670960.8326538
+Current time: 1734702096.8704383, Last reset time: 1734702096.861129
 phys_distance_front: 1057.6921499747668, virt_distance_front: 960.0719198899302, cur_rota_alignment: 752.1476845399288
 phys_distance_right: 367.76715063023954, virt_distance_right: 39.61534104183529
 phys_distance_left: 687.5462625751965, virt_distance_left: 361.17061770850853
@@ -11749,24 +11758,25 @@ phys_distance_left: 111.2079200161939, virt_distance_left: 155.99684153263223
 Alignment: 394.8936721701763, Trans gain: 1.0950615966255617, Rota gain: 0.9466402392685758, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1018.182942346241, 'user_y': 588.413739345634, 'user_direction': 2.3323705472165215}, 'virtual': {'user_x': 445.50016723057274, 'user_y': 456.5383667697754, 'user_direction': 2.789276782049698}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 21.560631445243782, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670961.305379, Last reset time: 1734670960.8326538
+Current time: 1734702097.2873526, Last reset time: 1734702096.861129
+{'type': 'running', 'user_x': 1018.182942346241, 'user_y': 588.413739345634, 'user_direction': 1.0757334857806047, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1018.182942346241, 'user_y': 588.413739345634, 'user_direction': 1.0757334857806047}, 'virtual': {'user_x': 437.9915585326977, 'user_y': 459.29894558991356, 'user_direction': 2.789276782049698}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 21.560631445243782, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670961.3160448, Last reset time: 1734670961.305379
+Current time: 1734702097.2978463, Last reset time: 1734702097.2873526
 phys_distance_front: 454.5770390602594, virt_distance_front: 466.6553564381657, cur_rota_alignment: 99.8367617727061
 phys_distance_right: 450.8532457466351, virt_distance_right: 379.25980803958475
 phys_distance_left: 122.76032581014093, virt_distance_left: 106.59531912239149
 Alignment: 99.8367617727061, Trans gain: 0.9741172640337907, Rota gain: 0.9833102093600038, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1022.2809659960096, 'user_y': 595.5307895286358, 'user_direction': 1.048358273728371}, 'virtual': {'user_x': 430.48294983482265, 'user_y': 462.0595244100517, 'user_direction': 2.789276782049698}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 22.72477256107724, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670961.3290043, Last reset time: 1734670961.305379
+Current time: 1734702097.3066847, Last reset time: 1734702097.2873526
 phys_distance_front: 122.84899929546609, virt_distance_front: 458.6553564381657, cur_rota_alignment: 410.06718658686754
 phys_distance_right: 461.5712074243816, virt_distance_right: 403.9605692447057
 phys_distance_left: 65.2443666527785, virt_distance_left: 81.89455791727048
 Alignment: 410.06718658686754, Trans gain: 0.86, Rota gain: 0.9441464331900034, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1027.170470677895, 'user_y': 603.4444489342523, 'user_direction': 1.0173505217903864}, 'virtual': {'user_x': 422.9743411369476, 'user_y': 464.8201032301899, 'user_direction': 2.7892767820496975}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.170470677895082, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670961.3385153, Last reset time: 1734670961.305379
+Current time: 1734702097.3165574, Last reset time: 1734702097.2873526
 phys_distance_front: 260.9932285699383, virt_distance_front: 450.6553564381657, cur_rota_alignment: 286.34977796333385
 phys_distance_right: 470.1908487389946, virt_distance_right: 426.177488900922
 phys_distance_left: 4.519506455117105, virt_distance_left: 57.193796712151006
@@ -18139,80 +18149,81 @@ phys_distance_left: 11.424583736712277, virt_distance_left: 574.7306938243813
 Alignment: 2177.1495102818685, Trans gain: 1.26, Rota gain: 0.8843168291462645, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 3.9680465107189695}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -1.9815611178937336}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.8582146, Last reset time: 1734670961.305379
+Current time: 1734702107.5947456, Last reset time: 1734702097.2873526
+{'type': 'running', 'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 6.167161368231825, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 6.167161368231825}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -2.0815611178937337}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.8718455, Last reset time: 1734670972.8582146
+Current time: 1734702107.6071837, Last reset time: 1734702107.5947456
 phys_distance_front: 402.7074951251122, virt_distance_front: 458.1661076202877, cur_rota_alignment: 655.2367498769252
 phys_distance_right: 1421.3621894733656, virt_distance_right: 1269.6358918973121
 phys_distance_left: 152.40377794041387, virt_distance_left: 600.4556177461102
 Alignment: 655.2367498769252, Trans gain: 0.8789552269956693, Rota gain: 0.9287772255029815, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 6.274829813639543}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -2.1815611178937337}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.8813853, Last reset time: 1734670972.8582146
+Current time: 1734702107.6171374, Last reset time: 1734702107.5947456
 phys_distance_front: 400.0139632606405, virt_distance_front: 488.2754956890088, cur_rota_alignment: 766.6905759843614
 phys_distance_right: 1411.855328054975, virt_distance_right: 1082.2335521295652
 phys_distance_left: 988.2284515088678, virt_distance_left: 639.4211838782845
 Alignment: 766.6905759843614, Trans gain: 0.86, Rota gain: 0.8964300723151087, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 0.10319810454680045}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -2.281561117893734}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.8915427, Last reset time: 1734670972.8582146
+Current time: 1734702107.63183, Last reset time: 1734702107.5947456
 phys_distance_front: 1379.7403481298775, virt_distance_front: 511.7419928090761, cur_rota_alignment: 1719.4789654273332
 phys_distance_right: 402.1394624748451, virt_distance_right: 951.3208231527957
 phys_distance_left: 993.4794651985279, virt_distance_left: 691.1802157699467
 Alignment: 1719.4789654273332, Trans gain: 1.26, Rota gain: 0.8681263132757201, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 0.21838871502682128}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -2.381561117893734}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.900993, Last reset time: 1734670972.8582146
+Current time: 1734702107.642951, Last reset time: 1734702107.5947456
 phys_distance_front: 1405.7904516134806, virt_distance_front: 402.41615879047174, cur_rota_alignment: 1701.8510097072226
 phys_distance_right: 409.73203206702186, virt_distance_right: 856.2946761723199
 phys_distance_left: 1012.2367936424881, virt_distance_left: 760.3227208635725
 Alignment: 1701.8510097072226, Trans gain: 1.26, Rota gain: 0.9146105241162551, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 0.3277248721813929}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -2.481561117893734}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.9111693, Last reset time: 1734670972.8582146
+Current time: 1734702107.6545355, Last reset time: 1734702107.5947456
 phys_distance_front: 1449.549006040526, virt_distance_front: 303.2106896776365, cur_rota_alignment: 1698.9419725002642
 phys_distance_right: 422.48591114276223, virt_distance_right: 785.6657062150923
 phys_distance_left: 1043.7450591715537, virt_distance_left: 854.321198106509
 Alignment: 1698.9419725002642, Trans gain: 1.26, Rota gain: 0.9552842086017233, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 0.43240576096774985}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -2.581561117893734}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.9220526, Last reset time: 1734670972.8582146
+Current time: 1734702107.6646643, Last reset time: 1734702107.5947456
 phys_distance_front: 1511.5197887875179, virt_distance_front: 202.8887208358847, cur_rota_alignment: 2086.2074857943926
 phys_distance_right: 57.26960811463822, virt_distance_right: 732.5619838487129
 phys_distance_left: 1088.3670057464033, virt_distance_left: 986.0829636377186
 Alignment: 2086.2074857943926, Trans gain: 1.26, Rota gain: 0.9196236825265078, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 0.5411458922845807}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -2.681561117893734}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.9315844, Last reset time: 1734670972.8582146
+Current time: 1734702107.6796064, Last reset time: 1734702107.5947456
 phys_distance_front: 101.71882621882244, virt_distance_front: 87.59911972933249, cur_rota_alignment: 384.0505730804798
 phys_distance_right: 349.6467780246382, virt_distance_right: 692.6651203337856
 phys_distance_left: 1152.9250729043504, virt_distance_left: 1179.8375971861929
 Alignment: 384.0505730804798, Trans gain: 1.1611854837482116, Rota gain: 0.9596707222106944, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 0.6453483001371828}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -2.7815611178937343}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.9418535, Last reset time: 1734670972.8582146
+Current time: 1734702107.691068, Last reset time: 1734702107.5947456
 phys_distance_front: 35.679544400501875, virt_distance_front: 559.7050998072843, cur_rota_alignment: 2215.7102286281333
 phys_distance_right: 195.44462479864094, virt_distance_right: 663.1735092996096
 phys_distance_left: 1236.958227600916, virt_distance_left: 13.002438880533647
 Alignment: 2215.7102286281333, Trans gain: 0.86, Rota gain: 0.9234618819343576, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 0.7536364731048986}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -2.8815611178937344}, 'user_v': 0, 'user_w': 0.1, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.9512877, Last reset time: 1734670972.8582146
+Current time: 1734702107.7040834, Last reset time: 1734702107.5947456
 phys_distance_front: 403.4378495068147, virt_distance_front: 542.0424606308538, cur_rota_alignment: 1661.956717576869
 phys_distance_right: 60.1442264136069, virt_distance_right: 642.2457128400824
 phys_distance_left: 1355.165669796429, virt_distance_left: 413.9150497700746
 Alignment: 1661.956717576869, Trans gain: 0.86, Rota gain: 0.9630291466925629, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 0.857475490172493}, 'virtual': {'user_x': 523.8200069622525, 'user_y': 620.6546132563608, 'user_direction': -3.0652009607116155}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.9616632, Last reset time: 1734670972.8582146
+Current time: 1734702107.7150288, Last reset time: 1734702107.5947456
 phys_distance_front: 380.93363523722746, virt_distance_front: 525.3521580102323, cur_rota_alignment: 942.1904189033999
 phys_distance_right: 1358.9124186685842, virt_distance_right: 622.4700013734525
 phys_distance_left: 100.78591451162443, virt_distance_left: 162.11539334688777
 Alignment: 942.1904189033999, Trans gain: 0.86, Rota gain: 0.9976505033559926, Cur gain: 300.0, Rota direction: -1
 {'type': 'running', 'physical': {'user_x': 1027.6001468359411, 'user_y': 988.1939554844585, 'user_direction': 0.9577109931503499}, 'virtual': {'user_x': 515.8433383756615, 'user_y': 620.0440739376498, 'user_direction': -3.0652009607116155}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 27.600146835941132, Object: POLYGON ((1000 600, 1000 1000, 600 1000, 600 600, 1000 600))
-Current time: 1734670972.9731574, Last reset time: 1734670972.8582146
+Current time: 1734702107.7299604, Last reset time: 1734702107.5947456
 phys_distance_front: 36.21129093975487, virt_distance_front: 517.3521580102323, cur_rota_alignment: 1163.6220655059412
 phys_distance_right: 1256.4243877532142, virt_distance_right: 621.8576762534271
 phys_distance_left: 219.33286972170683, virt_distance_left: 267.24735665738353
@@ -19845,10 +19856,11 @@ phys_distance_left: 1356.0074276889122, virt_distance_left: 1044.160211471076
 Alignment: 1036.6849912524679, Trans gain: 1.26, Rota gain: 0.8981170468499073, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1025.0402899956753, 'user_y': 1397.4964019569952, 'user_direction': 2.4285585116096238}, 'virtual': {'user_x': 371.162957410367, 'user_y': 584.0668365491408, 'user_direction': 0.9848579105887791}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 25.16513711920625, Object: POLYGON ((1000 1400, 1000 1800, 600 1800, 600 1400, 1000 1400))
-Current time: 1734670975.6628067, Last reset time: 1734670972.8582146
+Current time: 1734702110.811995, Last reset time: 1734702107.5947456
+{'type': 'running', 'user_x': 1025.0402899956753, 'user_y': 1397.4964019569952, 'user_direction': 5.255991899840438, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1025.0402899956753, 'user_y': 1397.4964019569952, 'user_direction': 5.255991899840438}, 'virtual': {'user_x': 375.5868094744292, 'user_y': 590.7323847572999, 'user_direction': 0.9848579105887789}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 25.16513711920625, Object: POLYGON ((1000 1400, 1000 1800, 600 1800, 600 1400, 1000 1400))
-Current time: 1734670975.6743658, Last reset time: 1734670975.6628067
+Current time: 1734702110.8254156, Last reset time: 1734702110.811995
 phys_distance_front: 206.86916718084987, virt_distance_front: 85.37950528056953, cur_rota_alignment: 361.5994316494136
 phys_distance_right: 340.08797642799044, virt_distance_right: 450.77979814435434
 phys_distance_left: 1197.6858307790487, virt_distance_left: 1068.2678827462794
@@ -20959,10 +20971,11 @@ phys_distance_left: 269.1448971003739, virt_distance_left: 372.37278537987413
 Alignment: 395.3650968867825, Trans gain: 0.86, Rota gain: 1.051085695038095, Cur gain: 300.0, Rota direction: 1
 {'type': 'running', 'physical': {'user_x': 1504.1941866249017, 'user_y': 1374.2388139004026, 'user_direction': 2.1272422733031617}, 'virtual': {'user_x': 284.9870556635163, 'user_y': 1049.7749073545715, 'user_direction': -2.248836701275917}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 25.761186099597357, Object: POLYGON ((1800 1400, 1800 1800, 1400 1800, 1400 1400, 1800 1400))
-Current time: 1734670977.5529387, Last reset time: 1734670975.6628067
+Current time: 1734702112.8340793, Last reset time: 1734702110.811995
+{'type': 'running', 'user_x': 1504.1941866249017, 'user_y': 1374.2388139004026, 'user_direction': 4.954675661533976, 'reset': True}
 {'type': 'running', 'physical': {'user_x': 1504.1941866249017, 'user_y': 1374.2388139004026, 'user_direction': 4.954675661533976}, 'virtual': {'user_x': 279.96891113289706, 'user_y': 1043.5444799639492, 'user_direction': -2.2488367012759167}, 'user_v': 7.999999999999999, 'user_w': 0, 'delta_t': 0.02, 'need_reset': False}
 Distance to closest obstacle: 25.761186099597357, Object: POLYGON ((1800 1400, 1800 1800, 1400 1800, 1400 1400, 1800 1400))
-Current time: 1734670977.563447, Last reset time: 1734670977.5529387
+Current time: 1734702112.846497, Last reset time: 1734702112.8340793
 phys_distance_front: 412.03475831983764, virt_distance_front: 446.33056608810074, cur_rota_alignment: 1323.1060081733835
 phys_distance_right: 197.3330320105965, virt_distance_right: 296.17849086805705
 phys_distance_left: 1549.4507203802405, virt_distance_left: 359.48597883258054
@@ -21856,4 +21869,4 @@ phys_distance_right: 239.73379676012308, virt_distance_right: 0.5820435558843264
 phys_distance_left: 1275.3935580357604, virt_distance_left: 44.1434510106795
 Alignment: 2696.873059804812, Trans gain: 1.26, Rota gain: 1.0125890137741353, Cur gain: 300.0, Rota direction: -1
 {'type': 'end'}
-All time:  38.909794092178345 Calc time:  0.36901140213012695 Calc time per frame:  0.00010140461723828715
+All time:  36.69635772705078 Calc time:  0.302689790725708 Calc time per frame:  8.317938739370926e-05

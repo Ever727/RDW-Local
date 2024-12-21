@@ -39,14 +39,15 @@ for line in lines:
         obstacles = virtual_env['obstacle_list']
     elif message['type'] == 'running':
         # 检查 need_reset 是否为 True
-        if 'need_reset' in message and message['need_reset']:
-            reset_count += 1
+        if 'need_reset' in message:
+            if message['need_reset']:
+                reset_count += 1
         
-        # 获取用户位置
-        virtual_state = message['virtual']
-        user_x = virtual_state['user_x']
-        user_y = virtual_state['user_y']
-        user_positions.append((user_x, user_y))
+            # 获取用户位置
+            virtual_state = message['virtual']
+            user_x = virtual_state['user_x']
+            user_y = virtual_state['user_y']
+            user_positions.append((user_x, user_y))
 
 # 开始绘图
 fig, ax = plt.subplots()

@@ -293,7 +293,7 @@ def calc_gain_ARC(
         f"phys_distance_left: {phys_distance_left}, virt_distance_left: {virt_distance_left}"
     )
 
-    if cur_rota_alignment == 0:
+    if cur_rota_alignment < 5:
         return 1, 1, INF_CUR_GAIN_R, 1
     else:
         trans_gain = clamp(
@@ -315,7 +315,7 @@ def calc_gain_ARC(
         prev_rota_gain = rota_gain
 
         misalign_left = phys_distance_left - virt_distance_left
-        misalign_right = virt_distance_right - phys_distance_right
+        misalign_right = phys_distance_right - virt_distance_right
         scale_factor = abs(min(1.0, max(misalign_left, misalign_right)))
         if scale_factor == 0:
             scale_factor = 1e-6
@@ -670,8 +670,9 @@ def judge_reset(
     Return True if need reset, otherwise False. Implement your own logic here.
     """
     if algorithm == "ARC":
-        return need_reset_ARC(
-            physical_user, virtual_user, physical_space, virtual_space, delta
-        )
+        # return need_reset_ARC(
+        #     physical_user, virtual_user, physical_space, virtual_space, delta
+        # )
+        return False
     else:
         return False

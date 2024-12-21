@@ -39,14 +39,17 @@ for line in lines:
         obstacles = physical_env['obstacle_list']
     elif message['type'] == 'running':
         # 检查 need_reset 是否为 True
-        if 'need_reset' in message and message['need_reset']:
-            reset_count += 1
+        if 'need_reset' in message:
+            if message['need_reset']:
+                reset_count += 1
+            
+            physical_state = message['physical']
+            user_x = physical_state['user_x']
+            user_y = physical_state['user_y']
+            user_positions.append((user_x, user_y))
         
-        # 获取用户位置
-        physical_state = message['physical']
-        user_x = physical_state['user_x']
-        user_y = physical_state['user_y']
-        user_positions.append((user_x, user_y))
+        if 'reset' in message and message['reset']:
+            reset_count += 1
 
 # 开始绘图
 fig, ax = plt.subplots()
