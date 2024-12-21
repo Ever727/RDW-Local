@@ -297,8 +297,9 @@ def calc_gain_ARC(
         f"phys_distance_left: {phys_distance_left}, virt_distance_left: {virt_distance_left}"
     )
 
-    if cur_rota_alignment < 5:
-        return 1, 1, INF_CUR_GAIN_R, 1
+    if cur_rota_alignment < 1000:
+        print("Alignment is too small, use default gains")
+        return 1, 1, INF_CUR_GAIN_R * PIXEL, 1
     else:
         trans_gain = clamp(
             (
@@ -328,7 +329,7 @@ def calc_gain_ARC(
         if scale_factor == 0:
             scale_factor = 1e-6
 
-        rota_direction = 1 if misalign_left < misalign_right else -1
+        rota_direction = 1 if misalign_left > misalign_right else -1
 
         cur_gain = max(MIN_CUR_GAIN_R, MIN_CUR_GAIN_R / scale_factor) * PIXEL
 
