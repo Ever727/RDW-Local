@@ -223,7 +223,7 @@ def split_action(action):
     gt, gr, gc = action[0]
     gt = 1.060 + 0.2 * gt
     gr = 1.145 + 0.345 * gr
-    gc = gc / 100
+    gc = gc / 300
     return gt, gr, gc
 
 
