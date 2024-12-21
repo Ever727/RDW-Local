@@ -82,6 +82,24 @@ $$
 
 ### SRL
 
+我们复现了论文A Steering Algorithm for Redirected Walking Using Reinforcement Learning中的强化学习方法。
+
+论文使用Proximal Policy Optimization（PPO）算法，这是一种actor-critic算法，包括actor网络和critic网络。
+
+我们使用https://github.com/chenzeyin9867/srl.git的开源代码中的框架进行训练。训练时间53h，6000轮。
+
+模型的输入为最近10次的observation，具体而言，每次的observation都是一个三维向量$(x_t,y_t,a_t)$，即当前时刻的x、y坐标以及面向的方向，而模型输入一个30维的向量，由10个这样的向量拼接而成。每个维度的输入都被线性映射为0到1之间的值。模型输出0到1之间的三维向量$(g_r,g_t,g_c)$
+
+我们将模型接入框架，需要将提供的输入映射到0到1区间，再将输出映射到合理范围内。其中模型输出的是曲率，和框架中的曲率半径为倒数关系。
+
+在开阔大物理空间中，模型倾向于在中心附近画八字。
+
+![image-20241221222916315](/Users/zzh/Library/Application Support/typora-user-images/image-20241221222916315.png)
+
+在没有障碍的空间中，模型表现十分优秀。
+
+而面对有障碍的物理空间，由于训练时对应位置没有障碍，模型也无法对障碍作出反应，除非在数据集中也加入对应位置的障碍。方法的一大劣势就是对一个新环境就要重新训练一遍模型。
+
 ### ARC
 
 ARC 的策略是考虑现实环境与虚拟环境的对齐程度来调整增益策略。具体而言，定义 $d(p,\theta)$ 表示位置 $p$ 在当前环境下 $\theta$ 方向距离最近障碍物、边界的距离，我们定义对齐程度为：
