@@ -293,7 +293,7 @@ def calc_gain_ARC(
         f"phys_distance_left: {phys_distance_left}, virt_distance_left: {virt_distance_left}"
     )
 
-    if cur_rota_alignment < 5:
+    if cur_rota_alignment < 40:
         return 1, 1, INF_CUR_GAIN_R, 1
     else:
         trans_gain = clamp(
@@ -470,6 +470,8 @@ def calc_gain(
         return calc_gain_APF(physical_user, physical_space, delta)
     else:
         return MAX_TRANS_GAIN, MAX_ROT_GAIN, INF_CUR_GAIN_R, 1
+        # return 1, 1, INF_CUR_GAIN_R, 1
+
 
 
 def collision_with_obstacle(space, user):

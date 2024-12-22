@@ -1,5 +1,5 @@
 nums=25
-algorithms=("S2C" "S2O" "APF" "ARC" "RL" "NON")  # 定义算法列表
+algorithms=("ARC" "NON" "S2C" "S2O" "APF" "RL")  # 定义算法列表
 
 # Function to handle cleanup on Ctrl+C
 cleanup() {
@@ -26,12 +26,12 @@ check_end_condition() {
       break
     fi
 
-    sleep 1  # 每秒检查一次
+    sleep 0.1  # 每秒检查一次
   done
 }
 
 # 遍历 environment 从 2 到 10
-for environment in {8..9}; do
+for environment in {9..10}; do
   echo "正在测试环境 $environment"
   
   # 遍历 algorithms
@@ -67,7 +67,7 @@ for environment in {8..9}; do
       uvicorn_pid=$!
       echo "前端进程 PID: $uvicorn_pid"
 
-      sleep 0.5
+      sleep 0.1
 
       # 启动 firefox.py
       bash -c "python firefox.py 'test_set/env_${environment}/${times}.json'" &

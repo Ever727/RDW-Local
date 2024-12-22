@@ -143,7 +143,7 @@ def process_file(base_path, file_path):
             is_initial = True
 
         # 开始移动
-        while total_distance < 400:
+        while total_distance < 50:
             # 随机前进 2m ~ 6m
             step_distance = random.uniform(2, 6)
             angle = adjust_angle()

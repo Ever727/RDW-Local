@@ -1,6 +1,6 @@
-times=1
-generate_num=25
-environment=8
+times=2
+generate_num=24
+environment=9
 env_path="test_set/env_${environment}"
 
 mkdir -p "test_set/env_${environment}"  # 确保日志目录存在
