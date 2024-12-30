@@ -223,9 +223,14 @@ def split_action(action):
     gt, gr, gc = action[0]
     gt = 1.060 + 0.2 * gt
     gr = 1.145 + 0.345 * gr
-    gc = gc / 300
+    gc = gc / 300.0
+
     return gt, gr, gc
 
+obs_buffer = []
+def RL_reset_buffer():
+    global obs_buffer
+    obs_buffer = []
 
 def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path: str):
     """
@@ -253,9 +258,7 @@ def calc_gain_RL(user: UserInfo, physical_space: Space, delta: float, model_path
     else:
         direction = -1
         gc = -gc
-    print(
-        f"Translational gain: {gt}, Rotational gain: {gr}, Curvature gain: {gc}, Direction: {direction}"
-    )
+    #print( f"Translational gain: {gt}, Rotational gain: {gr}, Curvature gain: {gc}, Direction: {direction}"  )
     return gt, gr, gc, direction
 
 
