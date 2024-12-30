@@ -55,7 +55,7 @@ async def user_loop(websocket, path):
     while True:
         data = await websocket.recv()
         data = json.loads(data)
-        # print(data)
+        print(data)
         if data["type"] == "start":
             physical_space = Space(
                 data["physical"]["border"], data["physical"]["obstacle_list"]
@@ -76,7 +76,7 @@ async def user_loop(websocket, path):
             virtual_user = UserInfo(
                 data["virtual"]["user_x"],
                 data["virtual"]["user_y"],
-                (data["virtual"]["user_direction"] + math.pi * 2) % (math.pi * 2),
+                data["virtual"]["user_direction"],
                 data["user_v"],
                 data["user_w"],
             )
@@ -127,6 +127,8 @@ async def user_loop(websocket, path):
                             "reset": True,
                         }
                     )
+                    message_ = json.loads(message)
+                    print(message_)
                 elif is_universal:
                     user, has_reset = update_user(
                         physical_user,
@@ -170,12 +172,14 @@ async def user_loop(websocket, path):
                     )
 
             n_time = time.time()
+            # print(message)
             await websocket.send(message)
             calc_time += time.time() - n_time
             nn += 1
 
         elif data["type"] == "end":
             message = json.dumps({"type": "end"})
+            # print(message)
             await websocket.send(message)
             all_time = time.time() - r_time
             print(
@@ -185,6 +189,7 @@ async def user_loop(websocket, path):
                 calc_time,
                 "Calc time per frame: ",
                 calc_time / nn,
+                flush=True,
             )
 
 

@@ -34,10 +34,17 @@ class Space:
 
     def gethw(self):
         h,w = 0,0
-        for i in range(len(self.border)):
-            h = max(h,self.border[i][1])
-            w = max(w,self.border[i][0])
-        return h,w
+        min_border_x = min([t[0] for t in self.border])
+        min_border_y = min([t[1] for t in self.border])
+        max_border_x = max([t[0] for t in self.border])
+        max_border_y = max([t[1] for t in self.border])
+        h = max_border_y - min_border_y
+        w = max_border_x - min_border_x
+        # for i in range(len(self.border)):
+        #     h = max(h,self.border[i][1])
+        #     w = max(w,self.border[i][0])
+        return h,w, min_border_x, min_border_y
+
     def add_obstacle(self, obstacle):
         self.obstacle_list.append(obstacle)
 
